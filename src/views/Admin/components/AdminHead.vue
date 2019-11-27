@@ -14,7 +14,7 @@
       </el-row>
     </el-form>
 
-    <add-admin :visible='visible' @getChildData='getChildData'></add-admin>
+    <add-admin :visible='visible' @getChildData='getChildData' @getAdmin='getAdmin'></add-admin>
   </div>
 </template>
 
@@ -32,6 +32,8 @@ interface Admin {
   components: { AddAdmin }
 })
 export default class AdminHead extends Vue implements Admin{
+  @Prop() private page !: number
+
   form = {
     id: '',
   }
@@ -39,9 +41,10 @@ export default class AdminHead extends Vue implements Admin{
   visible = false
   
   public getAdmin() {
-    let params = Object.assign({}, this.form)
+    let params = Object.assign({}, this.form, {page: this.page })
+    console.log(params)
     service.getAdminList(params).then(res => {
-      this.$emit('getHeadData', res)
+      this.$emit('getHeadData', res, false)
     })
   }
 

@@ -2,13 +2,13 @@
   <div class="dash">
     <el-row :gutter="20" class="dashRow">
       <el-col :span="6">
-        <div class="dashRowItem">新增房间：{{room}}</div>
+        <div class="dashRowItem">新增账号：{{role}}</div>
       </el-col>
       <el-col :span="6">
-        <div class="dashRowItem">新增推流：{{push}}</div>
+        <div class="dashRowItem">新增用户：{{user}}</div>
       </el-col>
       <el-col :span="6">
-        <div class="dashRowItem">新增拉流：{{pull}}</div>
+        <div class="dashRowItem">新增商品：{{product}}</div>
       </el-col>
       <el-col :span="6">
         <div class="dashRowItem">预留</div>
@@ -27,22 +27,22 @@ declare let echarts: any;
 
 @Component
 export default class DashBoard extends Vue {
-  room: Number = 123
-  push: Number = 123456
-  pull: Number = 123456
+  role: Number = 123
+  user: Number = 123456
+  product: Number = 123456
   chartLine: any
 
   public drawChart(): void {
       this.chartLine = echarts.init(document.getElementById('chartLine'));
       this.chartLine.setOption({
         title: {
-            text: '折线图堆叠'
+            text: '折线图'
         },
         tooltip: {
             trigger: 'axis'
         },
         legend: {
-            data:['邮件营销','联盟广告','视频广告','直接访问','搜索引擎']
+            data:['视频广告','直接访问']
         },
         grid: {
             left: '3%',
@@ -63,34 +63,16 @@ export default class DashBoard extends Vue {
         },
         series: [
             {
-                name:'邮件营销',
-                type:'line',
-                stack: '总量',
-                data:[120, 132, 101, 134, 90, 230, 210]
-            },
-            {
-                name:'联盟广告',
-                type:'line',
-                stack: '总量',
-                data:[220, 182, 191, 234, 290, 330, 310]
-            },
-            {
                 name:'视频广告',
                 type:'line',
-                stack: '总量',
-                data:[150, 232, 201, 154, 190, 330, 410]
+                smooth: true,
+                data:[500, 700, 650, 500, 400, 350, 500]
             },
             {
                 name:'直接访问',
                 type:'line',
-                stack: '总量',
-                data:[320, 332, 301, 334, 390, 330, 320]
-            },
-            {
-                name:'搜索引擎',
-                type:'line',
-                stack: '总量',
-                data:[820, 932, 901, 934, 1290, 1330, 1320]
+                smooth: true,
+                data:[500, 300, 250, 500, 750, 700, 500]
             }
         ]
     })

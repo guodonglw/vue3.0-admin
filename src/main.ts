@@ -12,6 +12,10 @@ import 'element-ui/lib/theme-chalk/index.css'
 import axios from "axios"
 import VueAxios from "vue-axios"
 
+// 引入mock
+import Mock from './mock'
+Mock.bootstrap()
+
 // 引入dialog可移动
 import './directives.js'
 

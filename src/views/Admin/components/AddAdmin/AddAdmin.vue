@@ -2,10 +2,10 @@
   <el-dialog title="添加账号" :visible.sync="dialogFormVisible" v-dialogDrag width="30%">
     <el-form :model="form">
       <el-form-item label="账号ID" :label-width="formLabelWidth">
-        <el-input v-model="form.id" autocomplete="off" class="formItem"></el-input>
+        <el-input v-model="form.id" autocomplete="off" class="formItem" placeholder="请输入账号id"></el-input>
       </el-form-item>
       <el-form-item label="账号名称" :label-width="formLabelWidth">
-        <el-input v-model="form.name" autocomplete="off" class="formItem"></el-input>
+        <el-input v-model="form.name" autocomplete="off" class="formItem" placeholder="请输入账号名称"></el-input>
       </el-form-item>
       <el-form-item label="创建时间" :label-width="formLabelWidth">
         <el-date-picker
@@ -18,13 +18,14 @@
     </el-form>
     <div slot="footer" class="dialog-footer">
       <el-button size="medium" @click="dialogFormVisible = false" >取 消</el-button>
-      <el-button size="medium" type="primary" @click="dialogFormVisible = false">添加</el-button>
+      <el-button size="medium" type="primary" @click="addAdmin">添加</el-button>
     </div>
   </el-dialog>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
+import service from '@/service/index'
 
 interface Add {
   form: Object
@@ -39,7 +40,7 @@ export default class AddAdmin extends Vue implements Add{
   form = {
     id: '',
     name: '',
-    time: ''
+    createdAt: ''
   }
   formLabelWidth = '120px'
   dialogFormVisible = this.visible
@@ -54,6 +55,13 @@ export default class AddAdmin extends Vue implements Add{
     if (!val) {
       this.$emit('getChildData', val)
     }
+  }
+
+  public addAdmin() {
+    service.postAdminList(this.form).then(res => {
+      this.dialogFormVisible = false
+      this.$emit('getAdmin')
+    })
   }
 }
 </script>

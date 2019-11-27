@@ -1,7 +1,15 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import VueRouter, { RawLocation }  from 'vue-router'
 import Login from '../views/Login/index.vue'
 import Home from '../views/Home/index.vue'
+
+/**
+ * 重写路由的push方法
+ */
+const routerPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location: RawLocation) {
+  return (<any>(routerPush.call(this, location))).catch((error: any)=> error)
+}
 
 Vue.use(VueRouter)
 
@@ -91,17 +99,15 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  next()
-  // if (to.path == '/login') {
-  //   sessionStorage.removeItem('user');
-  //   sessionStorage.removeItem('token');
-  // }
-  // let user = JSON.parse(<string>sessionStorage.getItem('user'));
-  // if (!user && to.path != '/login') {
-  //   next({ path: '/login' })
-  // } else {
-  //   next()
-  // }
+  if (to.path == '/login') {
+    sessionStorage.removeItem('user');
+  }
+  let user = JSON.parse(<any>sessionStorage.getItem('user'));
+  if (!user && to.path !== '/login') {
+    next({ path: '/login' })
+  } else {
+    next()
+  }
 });
 
 export default router

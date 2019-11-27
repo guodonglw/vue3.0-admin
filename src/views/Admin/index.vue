@@ -1,7 +1,7 @@
 <template>
   <div class="admin">
-    <admin-head @getHeadData='getHeadData' ref="child"></admin-head>
-    <admin-content :tableData="tableData"></admin-content>
+    <admin-head @getHeadData='getHeadData' ref="child" :page='page'></admin-head>
+    <admin-content :tableData="tableData" :listLoading="listLoading"></admin-content>
     <admin-foot :total="total" @getFootData='getFootData'></admin-foot>
     <div class="block"></div>
   </div>
@@ -24,26 +24,23 @@ export default {
       tableData: [],
       total: 0,
       page: 1,
-      pageSize: 15
+      listLoading: true,
     }
   },
 
   methods: {
-    getHeadData(data = []) {
-      if (!Array.isArray(data)) {
-        data = [data]
-      }
-      if (data.length < this.pageSize) {
-        this.page = 1
-      }
-      this.tableData = data.slice((this.page-1)*this.pageSize, this.page*this.pageSize)
-      this.total = data.length
+    getHeadData(data, listLoading = false) {
+      let result = data.result
+      this.tableData = result.admins
+      this.total = result.total
+      this.listLoading = false
     },
 
     getFootData(page, pageSize) {
       this.page = page
-      this.pageSize = pageSize
-      this.$refs.child.getAdmin()
+      this.$nextTick(() => {
+        this.$refs.child.getAdmin()
+      })
     }
   },
 }

@@ -2,38 +2,50 @@
   <div class="content">
     <el-table
     :data="tableData"
+    highlight-current-row
     @sort-change='sortChange'
+    v-loading="listLoading"
     border>
-    <el-table-column type="expand">
-      <template slot-scope="props">
-        <el-form label-position="left" inline class="demo-table-expand">
-          <el-form-item label="ID">
-            <span>{{ props.row.id }}</span>
-          </el-form-item>
-          <el-form-item label="名称">
-            <span>{{ props.row.name }}</span>
-          </el-form-item>
-        </el-form>
-      </template>
-    </el-table-column>
-    <el-table-column
-      label="ID"
-      prop="id"
-      sortable='custom'>
-    </el-table-column>
-    <el-table-column
-      label="名字"
-      prop="name">
-    </el-table-column>
-    <el-table-column
-      label="创建时间"
-      prop="createdAt">
-    </el-table-column>
-    <el-table-column
-      label="头像"
-      prop="avatar">
-    </el-table-column>
-  </el-table>
+      <el-table-column type="expand">
+        <template slot-scope="props">
+          <el-form label-position="left" inline class="demo-table-expand">
+            <el-form-item label="ID">
+              <span>{{ props.row.id }}</span>
+            </el-form-item>
+            <el-form-item label="名称">
+              <span>{{ props.row.name }}</span>
+            </el-form-item>
+          </el-form>
+        </template>
+      </el-table-column>
+      <el-table-column
+        label="ID"
+        prop="id"
+        min-width="150"
+        sortable='custom'>
+      </el-table-column>
+      <el-table-column
+        label="名字"
+        prop="name"
+        min-width="150">
+      </el-table-column>
+      <el-table-column
+        label="地址"
+        prop="addr"
+        min-width="150">
+      </el-table-column>
+      <el-table-column
+        label="email"
+        prop="email"
+        min-width="300">
+      </el-table-column>
+      <!-- <el-table-column label="操作" width="150">
+        <template slot-scope="scope">
+          <el-button type="info" size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+          <el-button type="danger" size="mini" @click="handleDel(scope.$index, scope.row)">删除</el-button>
+        </template>
+      </el-table-column> -->
+    </el-table>
   </div>
 </template>
 
@@ -42,10 +54,16 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class AdminContent extends Vue{
-  @Prop() private tableData!: Array<object | null>
+  @Prop() private tableData!: Array<object>
+  @Prop() private listLoading!: Boolean
 
-  public sortChange(column, prop, order) {
-    console.log(column,prop, order)
+  public sortChange(column) {
+    let { prop, order } = column
+    if (order === 'descending') {
+      this.tableData.sort((a, b) => b["id"] - a["id"])
+    } else {
+      this.tableData.sort((a, b) => a["id"] - b["id"])
+    }
   }
 }
 </script>

@@ -46,8 +46,24 @@ export default {
           let params = Object.assign({}, this.ruleForm)
           this.logining = true;
           service.login(params).then(res => {
-            let { code, msg = '', result = {}, token = '' } = res;
-            this.logining = false  
+            let { code, msg = '', result = {} } = res['data'];
+            if (code === 0) {
+              this.logining = false
+              sessionStorage.setItem('user', JSON.stringify(this.ruleForm))
+              this.$router.push('/dashboard')
+            } else {
+              this.$message({
+                message: msg,
+                type: 'error',
+                duration: 1000
+              })
+            }
+          }).catch(err => {
+            this.$message({
+              message: err,
+              type: 'error',
+              duration: 1000
+            })
           });
         } else {
           this.$message({
@@ -57,8 +73,7 @@ export default {
           })
           return false;
         }
-        this.$router.push('/dashboard')
-      });   
+      });
     }
   }
 }

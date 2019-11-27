@@ -47,13 +47,14 @@ export default class HeadBar extends Vue {
   display: flex;
   flex-flow: row nowrap;
   line-height: 50px;
-  background-color: #20B2AA;
-  background-image: linear-gradient(to right,rgb(255,248,220), #40E0D0);
+  // background-color: #20B2AA;
+  background-image: linear-gradient(to right,rgba(0,128,128, 0.8), rgba(255,248,220, 1));
 
   &Start {
     width: 198px;
-    border-right: 2px solid #6495ED;     
-    background-image:-webkit-linear-gradient(left,#00FA9A,#4169E1); 
+    font-weight: bold;
+    border-right: 2px solid #2F4F4F;     
+    background-image:-webkit-linear-gradient(left,	#FFD700,#FFF8DC); 
     -webkit-background-clip:text; 
     -webkit-text-fill-color:transparent; 
   }
