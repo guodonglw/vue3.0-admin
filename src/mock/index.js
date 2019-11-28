@@ -30,7 +30,7 @@ export default {
       })
     })
 
-    // 获取用户列表
+    // 获取账号列表
     mock.onGet('/admin').reply(config => {
       let { page, id } = config.params
       let mockAdmins = _Admins.filter(admin => {
@@ -57,7 +57,7 @@ export default {
       })
     })
 
-    // 新增用户
+    // 新增账号
     mock.onPost('/admin').reply(config => {
       let newVal = JSON.parse(config.data);
       _Admins.push(newVal['params'])
@@ -65,14 +65,14 @@ export default {
         setTimeout(() => {
           resolve([200, {
             code: 0,
-            msg: 'success',
+            msg: '新增成功',
             result: {}
           }])
         }, 500)
       })
     })
 
-    // 修改用户
+    // 修改账号
     mock.onPut('/admin').reply(config => {
       let newVal = JSON.parse(config.data)
       let updateVal = newVal['params']
@@ -88,11 +88,29 @@ export default {
         setTimeout(() => {
           resolve([200, {
             code: 0,
-            msg: 'success',
+            msg: '修改成功',
             result: {}
           }])
         }, 500)
       })
     })
+
+    // 删除账号
+    mock.onDelete('/admin').reply(config => {
+      let val = config['params']
+      let { id } = val
+      _Admins = _Admins.filter(u => u.id !== id)
+
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            code: 0,
+            msg: '删除成功',
+            result: {}
+          }])
+        }, 500)
+      })
+    })
+
   }
 }

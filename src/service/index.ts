@@ -22,5 +22,9 @@ export default  {
 
   putAdminList: async (params: any) => {
     return await axios.put(`${baseUrl}admin`, { params }).then(res => res).catch(err => err)
+  },
+
+  deleteAdminList: async (params: any) => {
+    return await axios.delete(`${baseUrl}admin`, { params }).then(res => res).catch(err => err)
   }
 }

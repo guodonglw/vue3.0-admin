@@ -3,6 +3,7 @@
     <el-table
     :data="tableData"
     highlight-current-row
+    :header-cell-style="{background:'rgba(255,218,185,0.4)',color:'#2F4F4F'}"
     @sort-change='sortChange'
     v-loading="listLoading"
     border>
@@ -67,6 +68,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import EditAdmin from './EditAdmin/EditAdmin.vue'
+import service from '@/service/index'
 
 @Component({
   components: { EditAdmin }
@@ -97,7 +99,15 @@ export default class AdminContent extends Vue{
   }
 
   public handleDel(index, row) {
-
+    let params = {id: row.id}
+    service.deleteAdminList(params).then(res => {
+      let { code, msg } = res.data
+      this.$message({
+        message: msg,
+        type: 'success'
+      })
+      this.$emit('contentFlush')
+    })
   }
 
   public flushList() {
