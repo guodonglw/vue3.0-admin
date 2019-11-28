@@ -48,7 +48,6 @@ export default {
           service.login(params).then(res => {
             let { code, msg = '', result = {} } = res['data'];
             if (code === 0) {
-              this.logining = false
               sessionStorage.setItem('user', JSON.stringify(this.ruleForm))
               this.$router.push('/dashboard')
             } else {
@@ -58,6 +57,7 @@ export default {
                 duration: 1000
               })
             }
+            this.logining = false
           }).catch(err => {
             this.$message({
               message: err,

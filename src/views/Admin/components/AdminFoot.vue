@@ -2,7 +2,7 @@
   <div class="foot">
     <el-pagination
       background
-      layout="prev, pager, next"
+      layout="total, prev, pager, next"
       @current-change="handleCurrentChange"
       :page-size="pageSize"
       :total="total">

@@ -1,7 +1,7 @@
 <template>
   <div class="admin">
     <admin-head @getHeadData='getHeadData' ref="child" :page='page'></admin-head>
-    <admin-content :tableData="tableData" :listLoading="listLoading"></admin-content>
+    <admin-content :tableData="tableData" :listLoading="listLoading" @contentFlush='contentFlush'></admin-content>
     <admin-foot :total="total" @getFootData='getFootData'></admin-foot>
     <div class="block"></div>
   </div>
@@ -34,6 +34,16 @@ export default {
       this.tableData = result.admins
       this.total = result.total
       this.listLoading = false
+
+      if (this.total < 15) {
+        this.page = 1
+      }
+    },
+
+    contentFlush() {
+      this.$nextTick(() => {
+        this.$refs.child.getAdmin()
+      })
     },
 
     getFootData(page, pageSize) {

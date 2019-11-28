@@ -33,17 +33,16 @@ export default {
     // 获取用户列表
     mock.onGet('/admin').reply(config => {
       let { page, id } = config.params
-      console.log(id)
       let mockAdmins = _Admins.filter(admin => {
-        console.log(admin)
-        if (id && admin.id.indexOf(id) == -1) return false;
-        return true
+        if (id) {
+          return admin['id'] == id ? true : false
+        } else {
+          return true
+        }
       })
-      console.log(mockAdmins)
 
       let total = mockAdmins.length
-      mockAdmins = mockAdmins.filter((u, index) => index < 15*page && index >= 15*(page - 1))
-
+      mockAdmins = total <=1 ? mockAdmins : mockAdmins.filter((u, index) => index < 15*page && index >= 15*(page - 1))
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve([200, {
@@ -55,6 +54,44 @@ export default {
             }
           }])
         })
+      })
+    })
+
+    // 新增用户
+    mock.onPost('/admin').reply(config => {
+      let newVal = JSON.parse(config.data);
+      _Admins.push(newVal['params'])
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            code: 0,
+            msg: 'success',
+            result: {}
+          }])
+        }, 500)
+      })
+    })
+
+    // 修改用户
+    mock.onPut('/admin').reply(config => {
+      let newVal = JSON.parse(config.data)
+      let updateVal = newVal['params']
+      _Admins.some(u => {
+        if (u.id === updateVal.id) {
+          u.name = updateVal.name
+          u.email = updateVal.email
+          return true
+        }
+      })
+
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([200, {
+            code: 0,
+            msg: 'success',
+            result: {}
+          }])
+        }, 500)
       })
     })
   }

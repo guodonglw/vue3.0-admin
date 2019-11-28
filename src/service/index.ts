@@ -17,7 +17,10 @@ export default  {
   },
 
   postAdminList: async (params: any) => {
-    let url = `${baseUrl}users`
-    return await service.post(url, qs.stringify(params)).then(res => res).catch(err => err)
+    return await axios.post(`${baseUrl}admin`, { params }).then(res => res).catch(err => err)
+  },
+
+  putAdminList: async (params: any) => {
+    return await axios.put(`${baseUrl}admin`, { params }).then(res => res).catch(err => err)
   }
 }

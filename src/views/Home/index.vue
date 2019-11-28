@@ -57,6 +57,7 @@ export default {
       height: 100%;
       padding: 10px;
       // border: 2px solid blue;
+      background-color: rgba(255,248,220, 0.1);
       overflow: auto;
       display: flex;
       flex-flow: column nowrap;

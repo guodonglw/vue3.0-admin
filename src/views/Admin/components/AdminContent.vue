@@ -12,8 +12,17 @@
             <el-form-item label="ID">
               <span>{{ props.row.id }}</span>
             </el-form-item>
-            <el-form-item label="名称">
+            <el-form-item label="名字">
               <span>{{ props.row.name }}</span>
+            </el-form-item>
+            <el-form-item label="地址">
+              <span>{{ props.row.addr }}</span>
+            </el-form-item>
+            <el-form-item label="创建时间">
+              <span>{{ props.row.buildtime }}</span>
+            </el-form-item>
+            <el-form-item label="图像">
+              <span><img :src="props.row.image" title="图像示例"></span>
             </el-form-item>
           </el-form>
         </template>
@@ -21,41 +30,53 @@
       <el-table-column
         label="ID"
         prop="id"
+        align="center"
         min-width="150"
         sortable='custom'>
       </el-table-column>
       <el-table-column
         label="名字"
         prop="name"
+        align="center"
         min-width="150">
       </el-table-column>
       <el-table-column
         label="地址"
         prop="addr"
+        align="center"
         min-width="150">
       </el-table-column>
       <el-table-column
         label="email"
         prop="email"
+        align="center"
         min-width="300">
       </el-table-column>
-      <!-- <el-table-column label="操作" width="150">
+      <el-table-column label="操作" width="150">
         <template slot-scope="scope">
           <el-button type="info" size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
           <el-button type="danger" size="mini" @click="handleDel(scope.$index, scope.row)">删除</el-button>
         </template>
-      </el-table-column> -->
+      </el-table-column>
     </el-table>
+
+    <edit-admin :editVisible="editVisible" :row="row" @getChildData='getChildData' @flushList='flushList'></edit-admin>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
+import EditAdmin from './EditAdmin/EditAdmin.vue'
 
-@Component
+@Component({
+  components: { EditAdmin }
+})
 export default class AdminContent extends Vue{
   @Prop() private tableData!: Array<object>
   @Prop() private listLoading!: Boolean
+
+  editVisible = false
+  row = {}
 
   public sortChange(column) {
     let { prop, order } = column
@@ -64,6 +85,23 @@ export default class AdminContent extends Vue{
     } else {
       this.tableData.sort((a, b) => a["id"] - b["id"])
     }
+  }
+
+  public getChildData(val) {
+    this.editVisible = val
+  }
+
+  public handleEdit(index, row) {
+    this.editVisible = true
+    this.row = row
+  }
+
+  public handleDel(index, row) {
+
+  }
+
+  public flushList() {
+    this.$emit('contentFlush')
   }
 }
 </script>

@@ -4,12 +4,24 @@
       <el-form-item label="账号ID" :label-width="formLabelWidth">
         <el-input v-model="form.id" autocomplete="off" class="formItem" placeholder="请输入账号id"></el-input>
       </el-form-item>
-      <el-form-item label="账号名称" :label-width="formLabelWidth">
+      <el-form-item label="名称" :label-width="formLabelWidth">
         <el-input v-model="form.name" autocomplete="off" class="formItem" placeholder="请输入账号名称"></el-input>
+      </el-form-item>
+      <el-form-item label="地址" :label-width="formLabelWidth">
+        <el-cascader
+          placeholder="请选择地址"
+          v-model="form.addr"
+          :options="options"
+          class="formItem"      
+          filterable>
+        </el-cascader>
+      </el-form-item>
+      <el-form-item label="email" :label-width="formLabelWidth">
+        <el-input v-model="form.email" autocomplete="off" class="formItem" placeholder="请输入邮箱"></el-input>
       </el-form-item>
       <el-form-item label="创建时间" :label-width="formLabelWidth">
         <el-date-picker
-          v-model="form.time"
+          v-model="form.buildtime"
           type="date"
           placeholder="选择日期"
           class="formItem">
@@ -40,14 +52,43 @@ export default class AddAdmin extends Vue implements Add{
   form = {
     id: '',
     name: '',
-    createdAt: ''
+    addr: '',
+    email: '',
+    buildtime: ''
   }
   formLabelWidth = '120px'
   dialogFormVisible = this.visible
 
+  options = [{
+    value: '北京',
+    label: '北京',
+    children: [{
+      value: '朝阳区',
+      label: '朝阳区',
+    }, {
+      value: '海淀区',
+      label: '海淀区',
+    }, {
+      value: '东城区',
+      label: '东城区',
+    }, {
+      value: '西城区',
+      label: '西城区',
+    }, {
+      value: '其他',
+      label: '其他',
+    }]
+  }, {
+    value: '其他地区',
+    label: '其他地区',
+  }]
+
   @Watch('visible')
   onVisibleChange(val: Boolean, oldVal: Boolean) {
     this.dialogFormVisible = val
+    for (let key in this.form) {
+      this.form[key] = ''
+    }
   }
 
   @Watch('dialogFormVisible')
