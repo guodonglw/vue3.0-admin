@@ -78,13 +78,14 @@ export default class DashBoard extends Vue {
       line-height: 100px;
       overflow: auto;
       background-color:	white;
-      box-shadow: 2px 2px 4px rgba(0,0,0,.5);
+      box-shadow: 2px 2px 2px rgba(0,0,0,.5);
       border-color: rgba(0,0,0,.05);
     }
 
     &Middle {
       width: 100%;
       background-color:	white;
+      padding: 15px;
       box-shadow: 2px 2px 4px rgba(0,0,0,.5);
       border-color: rgba(0,0,0,.05);
     }

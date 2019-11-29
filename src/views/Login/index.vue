@@ -9,7 +9,7 @@
         <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
       </el-form-item>
       <div class="loginRem">
-        <el-checkbox label="记住密码" v-model="remember"></el-checkbox>
+        <el-checkbox label="记住密码 (账号:admin/密码:admin)" v-model="remember"></el-checkbox>
       </div>
       <el-form-item>
         <el-button class="loginButton" type="primary" @click="submitForm('ruleForm')" :loading="logining">登录</el-button>
