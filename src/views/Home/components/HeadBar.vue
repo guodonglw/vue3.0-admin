@@ -1,11 +1,14 @@
 <template>
   <div class="head">
-    <div class="headStart">
+    <div v-if="!isFold" class="headStart">
       {{name}}
+    </div>
+    <div v-else class="headStartFold">
+      <i class="el-icon-platform-eleme"></i>
     </div>
 
     <div class="headMiddle">
-
+      <i class="el-icon-s-fold" @click="handleFold"></i>
     </div>
 
     <div class="headEnd">
@@ -32,9 +35,15 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 export default class HeadBar extends Vue {
   name: string = "后台系统"
   admin: string = 'test' + '&nbsp&nbsp'
+  isFold: boolean = false
 
   public logOut () {
     this.$router.push({name: 'login'})
+  }
+
+  public handleFold() {
+    this.isFold = !this.isFold
+    this.$emit('getHeadData', this.isFold)
   }
 }
 
@@ -59,8 +68,19 @@ export default class HeadBar extends Vue {
     -webkit-text-fill-color:transparent; 
   }
 
+  &StartFold {
+    width: 68px;
+    border-right: 2px solid #2F4F4F;  
+  }
+
   &Middle {
     flex: 1 0 auto;
+
+    i {
+      float: left; 
+      line-height: 50px;
+      margin-left: 10px;
+    }
   }
 
   &End {

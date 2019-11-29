@@ -1,13 +1,13 @@
 <template>
   <div class="ctn">
     <div class="ctnHead">
-      <head-bar></head-bar> 
+      <head-bar @getHeadData="getHeadData"></head-bar> 
     </div>
 
     <div class="ctnBody">
-      <nav-bar></nav-bar>
+      <nav-bar :isFold="isFold"></nav-bar>
       <div class="ctnBodyContent">
-        <div class="ctnBodyTitle">
+        <div :class="['ctnBodyTitle', {'ctnBodyTitleFold': isFold}]">
           <el-breadcrumb separator="/">
             <el-breadcrumb-item ><strong>{{$route.name}}</strong></el-breadcrumb-item>
           </el-breadcrumb>
@@ -28,8 +28,17 @@ export default {
     HeadBar,
     NavBar
   },
+
   data() {
-    return {}
+    return {
+      isFold: false
+    }
+  },
+
+  methods: {
+    getHeadData(val) {
+      this.isFold = val
+    }
   }
 }
 </script>
@@ -72,6 +81,10 @@ export default {
       top: 55px;
       left: 205px;
       z-index: 1;
+
+      &Fold {
+        left: 80px;
+      }
     }
   }
 }
