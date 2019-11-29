@@ -69,7 +69,7 @@ export default class HeadBar extends Vue {
   }
 
   &StartFold {
-    width: 68px;
+    width: 62px;
     border-right: 2px solid #2F4F4F;  
   }
 
