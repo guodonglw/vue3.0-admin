@@ -8,7 +8,8 @@
     </div>
 
     <div class="headMiddle">
-      <i class="el-icon-s-fold" @click="handleFold"></i>
+      <i class="el-icon-s-fold" @click="handleFold" v-if="!isFold"></i>
+      <i class="el-icon-s-unfold" @click="handleFold" v-else></i>
     </div>
 
     <div class="headEnd">

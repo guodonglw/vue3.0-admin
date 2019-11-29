@@ -11,7 +11,7 @@ for (let i = 0; i < 80; i++) {
     amount: Math.floor(Math.random()*1000),
     builder: Mock.Random.cname(),
     buildtime: Mock.Random.date(),
-    image: Mock.Random.image("120x50")
+    image: Mock.Random.image("120x40")
   }));
 }
 

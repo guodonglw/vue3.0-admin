@@ -101,6 +101,13 @@ export default class AddAdmin extends Vue implements Add{
   public addAdmin() {
     service.postAdminList(this.form).then(res => {
       this.dialogFormVisible = false
+      let { code, msg } = res.data
+      if (code == 0) {
+        this.$message({
+          message: msg,
+          type: 'success'
+        })
+      }
       this.$emit('getAdmin')
     })
   }

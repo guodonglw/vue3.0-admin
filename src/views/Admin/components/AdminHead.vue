@@ -38,8 +38,9 @@ export default class AdminHead extends Vue implements Admin{
     id: '',
   }
 
-  visible = false
+  visible = false  // 添加对话框是否可见
   
+  // 请求table数据
   public getAdmin() {
     let params = Object.assign({}, this.form, {page: this.page })
     service.getAdminList(params).then(res => {
@@ -47,6 +48,7 @@ export default class AdminHead extends Vue implements Admin{
     })
   }
 
+  // 接收子组件数据
   public getChildData(val) {
     this.visible = val
   }
@@ -62,7 +64,7 @@ export default class AdminHead extends Vue implements Admin{
   flex: 0 0 50px;
   width: 100%;
   margin: 10px 0;
-  background-color:rgba(	176,196,222, 0.2);
+  background-color:rgba(	176,196,222, 0.3);
 
   &Form {
     margin: 20px 10px 10px 10px;

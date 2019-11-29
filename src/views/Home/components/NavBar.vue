@@ -1,4 +1,5 @@
 <template>
+  <!-- 导航栏 -->
   <el-menu
     :default-active="$route.path"
     class="el-menu-vertical-demo"
@@ -12,7 +13,7 @@
     :collapse="isFold"
     router>
     <template v-for="(item, index) in $router.options.routes">
-      <!-- 不折叠导航栏 -->
+      <!-- 二级菜单渲染 -->
       <el-submenu :index="index+''" v-if="!item.hidden && !item.leaf" :key="index" style="border-bottom: 1px solid red">
         <template slot="title">
           <i :class="item.iconCls"></i>
@@ -22,6 +23,7 @@
           <el-menu-item :index="child.path" :key="child.path" v-if="!child.hidden">{{child.name}}</el-menu-item>
         </template>
       </el-submenu>
+      <!-- 一级菜单渲染 -->
       <el-menu-item v-if="item.leaf && item.children.length>0" :index="item.children[0].path" :key="item.children[0].path">
         <i :class="item.iconCls"></i>
         <span slot="title">{{item.children[0].name}}</span>

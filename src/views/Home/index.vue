@@ -1,11 +1,15 @@
 <template>
   <div class="ctn">
+    <!-- 头部 -->
     <div class="ctnHead">
       <head-bar @getHeadData="getHeadData"></head-bar> 
     </div>
 
+    <!-- 内容主体 -->
     <div class="ctnBody">
+      <!-- 侧边栏 -->
       <nav-bar :isFold="isFold"></nav-bar>
+      <!-- 内容 -->
       <div class="ctnBodyContent">
         <div :class="['ctnBodyTitle', {'ctnBodyTitleFold': isFold}]">
           <el-breadcrumb separator="/">
@@ -66,7 +70,7 @@ export default {
       height: 100%;
       padding: 10px;
       // border: 2px solid blue;
-      background-color: rgba(255,248,220, 0.1);
+      background-color: #f0f2f5;
       overflow: auto;
       display: flex;
       flex-flow: column nowrap;
