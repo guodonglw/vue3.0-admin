@@ -20,6 +20,8 @@
 
 <script>
 import service from '@/service/index'
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
   data() {
     return {
@@ -39,7 +41,12 @@ export default {
       remember: true
     };
   },
+
   methods: {
+    ...mapActions([
+      'UpdateRememberPass'
+    ]),
+
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -50,6 +57,7 @@ export default {
             if (code === 0) {
               sessionStorage.setItem('user', JSON.stringify(this.ruleForm))
               this.$router.push('/dashboard')
+              this.UpdateRememberPass(this.remember)  // 全局变量是否记住密码
             } else {
               this.$message({
                 message: msg,
