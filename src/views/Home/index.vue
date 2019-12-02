@@ -47,7 +47,7 @@ export default {
 }
 </script>
 
-<style scoped lang="less">
+<style lang="less">
 .ctn {
   display: flex;
   flex-flow: column nowrap;
@@ -66,7 +66,7 @@ export default {
     flex-flow: row nowrap;
 
     &Content {
-      flex: 1 0 auto;
+      flex: 1 1 auto;
       height: 100%;
       padding: 10px;
       // border: 2px solid blue;
@@ -97,5 +97,9 @@ export default {
   width: 97%;
   height: 100%;
 }
- 
+
+.el-dialog {
+  width: 30%;
+  min-width: 380px;
+}
 </style>

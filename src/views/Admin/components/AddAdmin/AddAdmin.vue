@@ -1,5 +1,5 @@
 <template>
-  <el-dialog title="添加账号" :visible.sync="dialogFormVisible" v-dialogDrag width="30%">
+  <el-dialog title="添加账号" :visible.sync="dialogFormVisible" v-dialogDrag>
     <el-form :model="form">
       <el-form-item label="账号ID" :label-width="formLabelWidth">
         <el-input v-model="form.id" autocomplete="off" class="formItem" placeholder="请输入账号id"></el-input>

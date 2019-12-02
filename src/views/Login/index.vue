@@ -25,8 +25,8 @@ export default {
     return {
       logining: false,
       ruleForm: {
-        name: '',
-        pass: ''
+        name: 'admin',
+        pass: 'admin'
       },
       rules: {
         name: [
