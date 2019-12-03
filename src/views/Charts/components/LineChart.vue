@@ -26,7 +26,7 @@ export default {
       this.chart = echarts.init(document.getElementById(this.id))
 
       this.chart.setOption({
-        backgroundColor: '#394056',
+        backgroundColor: '#344b58',
         title: {
           top: 20,
           text: 'Requests',

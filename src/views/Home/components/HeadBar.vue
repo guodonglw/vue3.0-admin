@@ -35,7 +35,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 @Component
 export default class HeadBar extends Vue {
   name: string = "后台系统"
-  admin: string = 'test' + '&nbsp&nbsp'
+  admin: string = 'admin' + '&nbsp&nbsp'
   isFold: boolean = false
 
   public logOut () {
