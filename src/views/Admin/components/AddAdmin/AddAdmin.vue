@@ -1,11 +1,14 @@
 <template>
-  <el-dialog title="添加账号" :visible.sync="dialogFormVisible" v-dialogDrag>
+  <el-dialog title="添加账号" :visible.sync="dialogFormVisible" v-dialogDrag width="25%">
     <el-form :model="form">
-      <el-form-item label="账号ID" :label-width="formLabelWidth">
-        <el-input v-model="form.id" autocomplete="off" class="formItem" placeholder="请输入账号id"></el-input>
-      </el-form-item>
       <el-form-item label="名称" :label-width="formLabelWidth">
         <el-input v-model="form.name" autocomplete="off" class="formItem" placeholder="请输入账号名称"></el-input>
+      </el-form-item>
+      <el-form-item label="性别" :label-width="formLabelWidth">
+        <el-radio-group v-model="form.sex" class="formItem" style="width: auto; margin-top: 13px">
+          <el-radio label="男">男</el-radio>
+          <el-radio label="女">女</el-radio>
+        </el-radio-group>
       </el-form-item>
       <el-form-item label="地址" :label-width="formLabelWidth">
         <el-cascader
@@ -50,8 +53,8 @@ export default class AddAdmin extends Vue implements Add{
   @Prop() private visible!: Boolean
 
   form = {
-    id: '',
     name: '',
+    sex: '',
     addr: '',
     email: '',
     buildtime: ''
@@ -117,6 +120,6 @@ export default class AddAdmin extends Vue implements Add{
 <style lang="less" scoped>
 .formItem {
   width: 200px;
-  float: left
+  float: left;
 }
 </style>

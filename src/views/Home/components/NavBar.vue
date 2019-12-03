@@ -14,7 +14,7 @@
     router>
     <template v-for="(item, index) in $router.options.routes">
       <!-- 二级菜单渲染 -->
-      <el-submenu :index="index+''" v-if="!item.hidden && !item.leaf" :key="index" style="border-bottom: 1px solid red">
+      <el-submenu :index="index+''" v-if="!item.hidden && !item.leaf" :key="index">
         <template slot="title">
           <i :class="item.iconCls"></i>
           <span slot="title">{{item.name}}</span>
@@ -69,7 +69,7 @@ export default class NavBar extends Vue {
   min-width: 64px;
 }
 
-.el-menu-item {
-  border-bottom: 2px solid rgba(	95,158,160, 0.5)
-}
+// .el-menu-item {
+//   border-bottom: 2px solid rgba(	95,158,160, 0.5)
+// }
 </style>

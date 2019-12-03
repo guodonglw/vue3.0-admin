@@ -38,11 +38,11 @@ const routes = [
     path: '/',
     component: Home,
     name: '',
-    iconCls: 'el-icon-user-solid',
+    iconCls: 'el-icon-s-grid',
     leaf: true,
     children: [
       {
-        name: '账号管理',
+        name: '表格',
         path: '/admin',
         component: () => import('../views/Admin/index.vue')
       }
@@ -51,14 +51,14 @@ const routes = [
   {
     path: '/',
     component: Home,
-    name: '',
-    iconCls: 'el-icon-s-home',
-    leaf: true,
+    name: '图表',
+    iconCls: 'el-icon-s-data',
+    leaf: false,
     children: [
       {
-        name: '用户管理',
-        path: '/user',
-        component: () => import('../views/User/index.vue')
+        name: '图表',
+        path: '/chart',
+        component: () => import('../views/Charts/index.vue')
       }
     ]
   }, 

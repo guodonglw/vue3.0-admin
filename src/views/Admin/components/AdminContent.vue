@@ -42,6 +42,12 @@
         min-width="150">
       </el-table-column>
       <el-table-column
+        label="性别"
+        prop="sex"
+        align="center"
+        min-width="150">
+      </el-table-column>
+      <el-table-column
         label="地址"
         prop="addr"
         align="center"

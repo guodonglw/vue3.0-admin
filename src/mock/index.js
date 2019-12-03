@@ -60,7 +60,10 @@ export default {
     // 新增账号
     mock.onPost('/admin').reply(config => {
       let newVal = JSON.parse(config.data);
-      _Admins.push(newVal['params'])
+      let newAdmin = newVal['params']
+      newAdmin['addr'] = newAdmin['addr'].join(' ')
+      newAdmin['id'] = _Admins[_Admins.length - 1].id + 1
+      _Admins.push(newAdmin)
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve([200, {

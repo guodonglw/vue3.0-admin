@@ -117,7 +117,7 @@ export default {
 }
 
 .el-dialog {
-  width: 30%;
+  width: 25%;
   min-width: 380px;
 }
 </style>
