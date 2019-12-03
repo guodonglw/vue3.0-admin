@@ -1,17 +1,13 @@
 <template>
   <div class="head">
-    <el-form ref="form" :model="form" label-width="auto" class="headForm">
-      <el-row type="flex" :span="24">
-        <el-col :span="4">
-          <el-form-item label="查询的账户ID">
-            <el-input v-model="form.id" placeholder="查询的账户ID" style="width: 200px"></el-input>
-          </el-form-item>
-        </el-col> 
-        <el-form-item>
-          <el-button type="primary" @click="getAdmin" size="small">查询</el-button>
-          <el-button type="primary" @click="visible=true" size="small">新增</el-button>
-        </el-form-item>   
-      </el-row>
+    <el-form ref="form" :model="form" label-width="auto" class="headForm" :inline="true">
+      <el-form-item label="查询的账户ID">
+        <el-input v-model="form.id" placeholder="查询的账户ID" style="width: 200px"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="getAdmin" size="small">查询</el-button>
+        <el-button type="primary" @click="visible=true" size="small">新增</el-button>
+      </el-form-item>
     </el-form>
 
     <add-admin :visible='visible' @getChildData='getChildData' @getAdmin='getAdmin'></add-admin>
@@ -68,6 +64,7 @@ export default class AdminHead extends Vue implements Admin{
 
   &Form {
     margin: 20px 10px 10px 10px;
+    float: left;
   }
 }
 
