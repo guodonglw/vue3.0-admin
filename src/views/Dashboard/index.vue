@@ -58,7 +58,7 @@ export default class DashBoard extends Vue {
   // border: 2px solid blue;
   // height: 100%;
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: column wrap;
   justify-content: space-around;
   align-items: center;
   margin: 30px auto;
@@ -68,8 +68,9 @@ export default class DashBoard extends Vue {
     width: 100%;
     margin-bottom: 40px;
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: space-between;
+    align-items: center;
     // border: 2px solid red;
 
     &Item {
@@ -92,10 +93,22 @@ export default class DashBoard extends Vue {
 
     &Graph {
       width: 30%;
-      padding: 15px;
+      padding: 10px;
       background-color: white;
       box-shadow: 2px 2px 4px rgba(0,0,0,.5);
       border-color: rgba(0,0,0,.5);
+    }
+
+    @media screen and (max-width:1000px) {
+      &Item {
+        width: 48%;
+        margin: 10px 0;
+      }
+
+      &Graph {
+        width: 100%;
+        margin: 5px;
+      }
     }
   }
 

@@ -4,11 +4,13 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
+import util from '@/util/index'
 declare let echarts: any;
 
 @Component
 export default class LineChart extends Vue{
   chartLine: any
+  __resizeHandler: any
 
   public drawChart(): void {
     this.chartLine = echarts.init(document.getElementById('barChart'));
@@ -109,6 +111,18 @@ export default class LineChart extends Vue{
 
   private mounted() {
     this.drawChart()
+    this.__resizeHandler = util.debounce(() => {
+      if (this.chartLine) {
+        this.chartLine.resize()
+      }
+    }, 100)
+    window.addEventListener('resize', this.__resizeHandler)
+  }
+
+  private beforeDestroy() {
+    window.removeEventListener('reseize', this.__resizeHandler)
+    this.chartLine.dispose()
+    this.chartLine = null
   }
 }
 </script>
