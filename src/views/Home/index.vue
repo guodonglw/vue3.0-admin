@@ -56,7 +56,9 @@ export default {
     reload () {
       this.isRouterAlive = false
       this.$nextTick(() => {
-        this.isRouterAlive = true
+        setTimeout(() => {
+          this.isRouterAlive = true
+        }, 300)   
       })
     }
   }
