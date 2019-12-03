@@ -56,7 +56,7 @@ const routes = [
     leaf: false,
     children: [
       {
-        name: '图表',
+        name: '图表Tab',
         path: '/chart',
         component: () => import('../views/Charts/index.vue')
       }
