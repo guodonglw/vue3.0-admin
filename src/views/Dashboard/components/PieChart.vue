@@ -16,7 +16,7 @@ export default class LineChart extends Vue{
     this.chartLine = echarts.init(document.getElementById('pieChart'));
     this.chartLine.setOption({
       title : {
-        text: '某站点用户访问来源',
+        text: '用户访问来源',
         subtext: '纯属虚构',
         x:'center'
       },

@@ -22,7 +22,7 @@ export default class LineChart extends Vue{
         }
       },
       legend: {
-        data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎','百度','谷歌','必应','其他']
+        data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
       },
       grid: {
         left: '3%',
@@ -79,31 +79,6 @@ export default class LineChart extends Vue{
               [{type : 'min'}, {type : 'max'}]
             ]
           }
-        },
-        {
-          name:'百度',
-          type:'bar',
-          barWidth : 5,
-          stack: '搜索引擎',
-          data:[620, 732, 701, 734, 1090, 1130, 1120]
-        },
-        {
-          name:'谷歌',
-          type:'bar',
-          stack: '搜索引擎',
-          data:[120, 132, 101, 134, 290, 230, 220]
-        },
-        {
-          name:'必应',
-          type:'bar',
-          stack: '搜索引擎',
-          data:[60, 72, 71, 74, 190, 130, 110]
-        },
-        {
-          name:'其他',
-          type:'bar',
-          stack: '搜索引擎',
-          data:[62, 82, 91, 84, 109, 110, 120]
         }
       ]
     })

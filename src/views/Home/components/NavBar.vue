@@ -33,11 +33,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop, Vue, Inject } from 'vue-property-decorator'
 
 @Component
 export default class NavBar extends Vue {
   @Prop() private isFold !: boolean
+
+  @Inject()  reload // 注入重载的功能
 
   public handleOpen() {
 
@@ -48,7 +50,7 @@ export default class NavBar extends Vue {
   }
 
   public handleSelect() {
-    
+    this.reload()  // 点击侧边栏页面重载
   }
 }
 

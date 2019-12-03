@@ -17,7 +17,7 @@
           </el-breadcrumb>
         </div>
         <div class="childContent">
-          <router-view></router-view>
+          <router-view v-if="isRouterAlive"></router-view>
         </div>
       </div>  
     </div>
@@ -33,15 +33,31 @@ export default {
     NavBar
   },
 
+  // 点击页面侧边栏实现重载页面
+  provide() {
+    return {
+      reload: this.reload
+    }
+  },
+
   data() {
     return {
-      isFold: false
+      isFold: false,
+      isRouterAlive: true
     }
   },
 
   methods: {
     getHeadData(val) {
       this.isFold = val
+    },
+
+    // 页面重载函数
+    reload () {
+      this.isRouterAlive = false
+      this.$nextTick(() => {
+        this.isRouterAlive = true
+      })
     }
   }
 }
