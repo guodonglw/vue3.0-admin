@@ -2,37 +2,29 @@
   <div :id="id" :style="{width: width, height: height}"></div>
 </template>
 
-<script>
-import echart from 'echarts'
-import resize from '../mixins/resize'
+<script lang="ts">
+import { Vue, Component, Prop } from 'vue-property-decorator';
+import myMixins from '../mixins/resize'
+declare let echarts: any;
 
-export default {
-  mixins: [resize],
+@Component({
+  mixins: [myMixins]
+})
+export default class LineChart extends Vue{
+  @Prop() private id !: string
+  @Prop() private width !: String 
+  @Prop() private height !: String 
 
-  props: {
-    id: String,
-    width: {
-      type: String,
-      default: '200px'
-    },
-    height: {
-      type: String,
-      default: '200px'
-    }
-  },
-
-  methods: {
-    initChart() {
-      this.chart = echarts.init(document.getElementById(this.id))
-
-      const xData = (function() {
-        const data = []
-        for (let i = 1; i < 13; i++) {
-          data.push(i + 'month')
-        }
-        return data
-      }())
-      this.chart.setOption({
+  public initChart() {
+    this.chart = echarts.init(document.getElementById(this.id))
+    const xData = (function() {
+      const data: Array<any> = []
+      for (let i: number = 1; i < 13; i++) {
+        data.push(i + 'month')
+      }
+      return data
+    }())
+    this.chart.setOption({
         backgroundColor: '#344b58',
         title: {
           text: 'statistics',
@@ -92,6 +84,7 @@ export default {
           },
           axisLabel: {
             interval: 0
+
           },
           data: xData
         }],
@@ -128,11 +121,12 @@ export default {
           handleSize: '110%',
           handleStyle: {
             color: '#d3dee5'
+
           },
           textStyle: {
-            color: '#fff' 
-          },
+            color: '#fff' },
           borderColor: '#90979c'
+
         }, {
           type: 'inside',
           show: true,
@@ -176,6 +170,7 @@ export default {
             4078
           ]
         },
+
         {
           name: 'male',
           type: 'bar',
@@ -240,16 +235,17 @@ export default {
             2865,
             4298
           ]
-        }]
+        }
+        ]
       })
-    }
-  },
+  }
+  
 
-  mounted() {
+  private mounted () {
     this.initChart()
-  },
+  }
 
-  beforeDestroy() {
+  private beforeDestroy() {
     if (!this.chart) {
       return
     }
@@ -258,7 +254,3 @@ export default {
   }
 }
 </script>
-
-<style lang="less" scoped>
-
-</style>

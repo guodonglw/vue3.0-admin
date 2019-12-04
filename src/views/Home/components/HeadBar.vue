@@ -35,8 +35,12 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 @Component
 export default class HeadBar extends Vue {
   name: string = "后台系统"
-  admin: string = 'admin' + '&nbsp&nbsp'
   isFold: boolean = false
+
+  // 计算属性
+  get admin() {
+    return sessionStorage.getItem('admin') ? sessionStorage.getItem('admin') + '&nbsp&nbsp' : 'admin'
+  }
 
   public logOut () {
     this.$router.push({name: 'login'})

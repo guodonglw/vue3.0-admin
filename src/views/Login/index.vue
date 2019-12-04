@@ -55,7 +55,8 @@ export default {
           service.login(params).then(res => {
             let { code, msg = '', result = {} } = res['data'];
             if (code === 0) {
-              sessionStorage.setItem('user', JSON.stringify(this.ruleForm))
+              sessionStorage.setItem('admin', this.ruleForm.name)
+              sessionStorage.setItem('pass', this.ruleForm.pass)
               this.$router.push('/dashboard')
               this.UpdateRememberPass(this.remember)  // 全局变量是否记住密码
             } else {

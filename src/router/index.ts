@@ -100,10 +100,10 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.path == '/login') {
-    sessionStorage.removeItem('user');
+    sessionStorage.removeItem('admin');
   }
-  let user = JSON.parse(<any>sessionStorage.getItem('user'));
-  if (!user && to.path !== '/login') {
+  let admin = <String>sessionStorage.getItem('admin');
+  if (!admin && to.path !== '/login') {
     next({ path: '/login' })
   } else {
     next()
