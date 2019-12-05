@@ -9,6 +9,7 @@
     <div class="chartContent">
       <line-chart v-if="showLine" :id="'lineChart'" :width="'100%'" :height="'100%'"></line-chart>
       <bar-chart v-if="showBar" :id="'barChart'" :width="'100%'" :height="'100%'"></bar-chart>
+      <pie-chart v-if="showPie" :id="'pieChart'" :width="'100%'" :height="'100%'"></pie-chart>
     </div>
   </div>
 </template>
@@ -16,11 +17,13 @@
 <script>
 import LineChart from './components/LineChart'
 import BarChart from './components/BarChart'
+import PieChart from './components/PieChart'
 
 export default {
   components: {
     LineChart,
-    BarChart
+    BarChart,
+    PieChart
   },
 
   data() {

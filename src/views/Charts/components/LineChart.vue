@@ -43,7 +43,7 @@ export default class LineChart extends Vue{
         itemWidth: 14,
         itemHeight: 5,
         itemGap: 13,
-        data: ['CMCC', 'CTCC', 'CUCC'],
+        data: ['移动', '联通', '电信'],
         right: '4%',
         textStyle: {
           fontSize: 12,
@@ -91,7 +91,7 @@ export default class LineChart extends Vue{
         }
       }],
       series: [{
-        name: 'CMCC',
+        name: '移动',
         type: 'line',
         smooth: true,
         symbol: 'circle',
@@ -125,7 +125,7 @@ export default class LineChart extends Vue{
         },
         data: [220, 182, 191, 134, 150, 120, 110, 125, 145, 122, 165, 122]
       }, {
-        name: 'CTCC',
+        name: '联通',
         type: 'line',
         smooth: true,
         symbol: 'circle',
@@ -159,7 +159,7 @@ export default class LineChart extends Vue{
         },
         data: [120, 110, 125, 145, 122, 165, 122, 220, 182, 191, 134, 150]
       }, {
-        name: 'CUCC',
+        name: '电信',
         type: 'line',
         smooth: true,
         symbol: 'circle',
