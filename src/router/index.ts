@@ -59,6 +59,11 @@ const routes = [
         name: '图表Tab',
         path: '/chart',
         component: () => import('../views/Charts/index.vue')
+      },
+      {
+        name: '图标Icon',
+        path: '/icon',
+        component: () => import('../views/Icon/index.vue')
       }
     ]
   }, 

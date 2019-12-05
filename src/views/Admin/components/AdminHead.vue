@@ -5,8 +5,8 @@
         <el-input v-model="form.id" placeholder="查询的账户ID" style="width: 200px"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="getAdmin" size="small">查询</el-button>
-        <el-button type="primary" @click="visible=true" size="small">新增</el-button>
+        <el-button type="primary" @click="getAdmin" size="small" icon="el-icon-search">查询</el-button>
+        <el-button type="primary" @click="visible=true" size="small" icon="el-icon-plus">新增</el-button>
       </el-form-item>
     </el-form>
 

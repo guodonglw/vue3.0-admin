@@ -59,10 +59,10 @@
         align="center"
         min-width="300">
       </el-table-column>
-      <el-table-column label="操作" width="150">
+      <el-table-column label="操作" width="200">
         <template slot-scope="scope">
-          <el-button type="info" size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-          <el-button type="danger" size="mini" @click="handleDel(scope.$index, scope.row)">删除</el-button>
+          <el-button type="info" size="mini" @click="handleEdit(scope.$index, scope.row)" icon="el-icon-edit">编辑</el-button>
+          <el-button type="danger" size="mini" @click="handleDel(scope.$index, scope.row)" icon="el-icon-delete">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
