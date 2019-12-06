@@ -44,7 +44,7 @@ const routes = [
       {
         name: '表格',
         path: '/admin',
-        component: () => import('../views/Admin/index.vue')
+        component: () => import('../views/AdminTable/index.vue')
       }
     ]
   },
@@ -75,9 +75,9 @@ const routes = [
     leaf: true,
     children: [
       {
-        name: '产品管理',
-        path: '/product',
-        component: () => import('../views/Product/index.vue')
+        name: 'Form表单',
+        path: '/form',
+        component: () => import('../views/Form/index.vue')
       }
     ]
   },

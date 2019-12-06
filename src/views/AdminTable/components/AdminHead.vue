@@ -7,6 +7,7 @@
       <el-form-item>
         <el-button type="primary" @click="getAdmin" size="small" icon="el-icon-search">查询</el-button>
         <el-button type="primary" @click="visible=true" size="small" icon="el-icon-plus">新增</el-button>
+        <el-button :loading="downloadLoading" type="info" @click="handleDownload" size="small" icon="el-icon-document">导出Excel</el-button>
       </el-form-item>
     </el-form>
 
@@ -18,6 +19,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import service from '@/service/index'
 import AddAdmin from './AddAdmin/AddAdmin.vue'
+import downloadMixins from '../mixins/download'
 
 interface Admin {
   form: Object
@@ -25,10 +27,13 @@ interface Admin {
 }
 
 @Component({
-  components: { AddAdmin }
+  components: { AddAdmin },
+  mixins: [downloadMixins]
 })
 export default class AdminHead extends Vue implements Admin{
   @Prop() private page !: number
+
+  downloadData: Array<any> = []
 
   form = {
     id: '',
@@ -40,6 +45,7 @@ export default class AdminHead extends Vue implements Admin{
   public getAdmin() {
     let params = Object.assign({}, this.form, {page: this.page })
     service.getAdminList(params).then(res => {
+      this.downloadData = res.result['admins']
       this.$emit('getHeadData', res, false)
     })
   }

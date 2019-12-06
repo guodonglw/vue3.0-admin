@@ -26,8 +26,6 @@ export default  {
     "check",
     "circle-close",
     "circle-check",
-    "circle-close-outline",
-    "circle-check-outline",
     "zoom-out",
     "zoom-in",
     "d-caret",

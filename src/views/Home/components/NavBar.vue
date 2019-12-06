@@ -78,5 +78,4 @@ export default class NavBar extends Vue {
 // .el-menu-item {
 //   // border-bottom: 2px solid rgba(	95,158,160, 0.5)
 // }
-
 </style>
