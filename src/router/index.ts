@@ -104,7 +104,6 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  console.log(process.env)
   if (to.path == '/login') {
     sessionStorage.removeItem('admin');
   }

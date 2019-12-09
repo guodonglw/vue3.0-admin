@@ -1,5 +1,5 @@
 <template>
-  <el-form :inline="false" :model="ruleForm" :rules="rules" ref="ruleFormDemo" label-width="100px" class="demo-ruleForm">
+  <el-form :inline="false" :model="ruleForm" :rules="rules" ref="ruleFormDemo" label-width="auto" class="demo-ruleForm">
       <el-form-item label="活动名称" prop="name" >
         <el-input v-model="ruleForm.name"></el-input>
       </el-form-item>
@@ -127,8 +127,8 @@ export default class FormDemo extends Vue{
 
 <style lang="less" scoped>
 .demo-ruleForm {
-  flex: 0 0 30%;
-  min-width: 500px;
+  flex: 0 1 30%;
+  min-width: 400px;
   margin: 50px auto;
   padding: 20px;
   border: 2px solid rgba(173,216,230, 1);

@@ -3,19 +3,17 @@
     :data="tableData"
     class="tableClass"
     :header-cell-style="{background:'rgba(255,218,185,0.4)',color:'#2F4F4F'}"
-    empty-text="请在右侧添加数据"
+    empty-text="请在右侧创建数据"
     border>
     <el-table-column
       prop="name"
       label="活动名称"
-      align="center"
-      width="180">
+      align="center">
     </el-table-column>
     <el-table-column
       prop="region"
       label="活动区域"
-      align="center"
-      width="180">
+      align="center">
     </el-table-column>
     <el-table-column
       prop="date3"
@@ -47,7 +45,7 @@ export default class TableData extends Vue{
 
 <style lang="less" scoped>
 .tableClass {
-  flex: 0 0 50%;
+  flex: 0 1 50%;
   min-width: 500px;
   border: 2px solid rgba(173,216,230, 1);
   margin: 50px auto;
