@@ -99,11 +99,12 @@ const routes = [
 
 const router = new VueRouter({
   // mode: 'history',
-  base: process.env.BASE_URL,
+  base: process.env.VUE_APP_URL,
   routes
 })
 
 router.beforeEach((to, from, next) => {
+  console.log(process.env)
   if (to.path == '/login') {
     sessionStorage.removeItem('admin');
   }
