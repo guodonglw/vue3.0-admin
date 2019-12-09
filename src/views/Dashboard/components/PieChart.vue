@@ -4,17 +4,19 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import util from '@/util/index'
+import myMixins from '../mixins/resize'
 declare let echarts: any;
 
-@Component
+@Component({
+  mixins:[myMixins]
+})
 export default class LineChart extends Vue{
-  chartLine: any
+  chart: any
   __resizeHandler: any
 
   public drawChart(): void {
-    this.chartLine = echarts.init(document.getElementById('pieChart'));
-    this.chartLine.setOption({
+    this.chart = echarts.init(document.getElementById('pieChart'));
+    this.chart.setOption({
       title : {
         text: '用户访问来源',
         subtext: '纯属虚构',
@@ -56,19 +58,6 @@ export default class LineChart extends Vue{
 
   private mounted() {
     this.drawChart()
-
-    this.__resizeHandler = util.debounce(() => {
-      if (this.chartLine) {
-        this.chartLine.resize()
-      }
-    }, 100)
-    window.addEventListener('resize', this.__resizeHandler)
-  }
-
-  private beforeDestroy() {
-    window.removeEventListener('reseize', this.__resizeHandler)
-    this.chartLine.dispose()
-    this.chartLine = null
   }
 }
 </script>

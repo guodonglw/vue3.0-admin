@@ -31,11 +31,16 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
+import { State, Getter, Action } from 'vuex-class'
 
 @Component
 export default class HeadBar extends Vue {
   name: string = "后台系统"
-  isFold: boolean = false
+  // isFold: boolean = false
+
+  // vuex数据
+  @State(state => state.app.isFold) isFold!: boolean
+  @Action('UpdateIsFold') UpdateIsFold!: Function
 
   // 计算属性
   get admin() {
@@ -47,7 +52,7 @@ export default class HeadBar extends Vue {
   }
 
   public handleFold() {
-    this.isFold = !this.isFold
+    this.UpdateIsFold(!this.isFold)
     this.$emit('getHeadData', this.isFold)
   }
 }

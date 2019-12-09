@@ -5,16 +5,18 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import Echarts from 'echarts'
-import util from '@/util/index'
+import myMixins from '../mixins/resize'
 
-@Component
+@Component({
+  mixins:[myMixins]
+})
 export default class LineChart extends Vue{
-  radarChart: any
+  chart: any
   __resizeHandler: any
 
   public drawChart(): void {
-    this.radarChart = Echarts.init(<HTMLDivElement | HTMLCanvasElement>document.getElementById('radarChart'))
-    this.radarChart.setOption({
+    this.chart = Echarts.init(<HTMLDivElement | HTMLCanvasElement>document.getElementById('radarChart'))
+    this.chart.setOption({
       tooltip:{ },
       legend: {
         data: ['预算分配', '实际开销'],
@@ -58,18 +60,6 @@ export default class LineChart extends Vue{
 
   private mounted() {
     this.drawChart()
-    this.__resizeHandler = util.debounce(() => {
-      if (this.radarChart) {
-        this.radarChart.resize()
-      }
-    }, 100)
-    window.addEventListener('resize', this.__resizeHandler)
-  }
-
-  private beforeDestroy() {
-    window.removeEventListener('reseize', this.__resizeHandler)
-    this.radarChart.dispose()
-    this.radarChart = null
   }
 }
 </script>
