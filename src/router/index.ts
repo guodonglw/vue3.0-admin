@@ -85,13 +85,13 @@ const routes = [
     path: '/',
     component: Home,
     name: '',
-    iconCls: 'el-icon-s-grid',
+    iconCls: 'el-icon-star-on',
     leaf: true,
     children: [
       {
-        name: '详情',
-        path: '/detail',
-        component: () => import('../views/Detail/index.vue')
+        name: 'Vuex使用',
+        path: '/vuex',
+        component: () => import('../views/VuexRelated/index.vue')
       }
     ]
   } 
