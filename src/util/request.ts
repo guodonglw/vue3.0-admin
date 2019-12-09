@@ -10,12 +10,7 @@ export interface AjaxResponse {
   data: any
 }
 
-// const dev = '/test'
-// const alp = 'http://192.168.1.31:8443/api'
-// const pro = 'http://111.111.111.111:8443/api'
-// const baseURL = process.env.NODE_ENV === 'development' ? dev : process.env.VUE_APP_BUILD === 'production' ? pro : alp
-
-// baseURL根据实际进行定义(该处需要根据开发环境进行切换，配置如上)
+// baseURL根据实际进行定义
 const baseURL = process.env.VUE_APP_URL;
 
 // 创建axios实例
