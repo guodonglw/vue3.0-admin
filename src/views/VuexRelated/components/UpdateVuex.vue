@@ -1,10 +1,10 @@
 <template>
   <div :style="{width: width}" class="updateVuex">
     <el-form>
-      <el-form-item label="输入进度条百分比" :label-width="formLabelWidth">
+      <el-form-item label="输入进度条百分比" >
         <el-input v-model="percentageNow" autocomplete="off" class="formItem" placeholder="请输入进度条百分比"></el-input>
       </el-form-item>
-      <el-form-item label="侧边导航栏折叠" :label-width="formLabelWidth">
+      <el-form-item label="侧边导航栏折叠" >
         <el-radio-group v-model="isFoldNow" class="formItem" style="width: auto; margin-top: 13px">
           <el-radio :label="true">是</el-radio>
           <el-radio :label="false">否</el-radio>
@@ -24,7 +24,6 @@ import { State, Getter, Action } from 'vuex-class'
 @Component
 export default class UpdateVuex extends Vue{
   @Prop() width !: string
-  formLabelWidth = 'auto'
   percentageNow:number = 0
   isFoldNow: Boolean = false
   

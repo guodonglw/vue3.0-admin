@@ -49,7 +49,6 @@ export default {
 
   methods: {
     getHeadData(val) {
-      console.log('tes')
       this.isFold = val
     },
 
