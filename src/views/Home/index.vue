@@ -8,7 +8,7 @@
     <!-- 内容主体 -->
     <div class="ctnBody">
       <!-- 侧边栏 -->
-      <nav-bar :isFold="isFold"></nav-bar>
+      <nav-bar></nav-bar>
       <!-- 内容 -->
       <div class="ctnBodyContent">
         <div :class="['ctnBodyTitle', {'ctnBodyTitleFold': isFold}]">
@@ -49,6 +49,7 @@ export default {
 
   methods: {
     getHeadData(val) {
+      console.log('tes')
       this.isFold = val
     },
 

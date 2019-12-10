@@ -34,10 +34,11 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Inject } from 'vue-property-decorator'
+import { State } from 'vuex-class'
 
 @Component
 export default class NavBar extends Vue {
-  @Prop() private isFold !: boolean
+  @State(state => state.app.isFold) isFold!: boolean
 
   @Inject()  reload // 注入重载的功能
 
