@@ -17,26 +17,33 @@
         <span>
           <p class="headEndCtx">
             <span v-html="admin">{{admin}}</span>
-            <!-- <img src="../../../assets/logo.png"/>      -->
-            <el-avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/d_nny_m_cher/128.jpg"></el-avatar>
+            <el-avatar :src="avatarUrl"></el-avatar>
           </p>
         </span>      
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>编辑</el-dropdown-item>
+          <el-dropdown-item @click.native="dialogVisible = true">编辑</el-dropdown-item>
           <el-dropdown-item @click.native="logOut">退出登录</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
+
+    <head-edit :dialogVisible="dialogVisible" :avatarUrl="avatarUrl" @changeAvatar="changeAvatar" @closeDialog="closeDialog"></head-edit>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
 import { State, Getter, Action } from 'vuex-class'
+import HeadEdit from './HeadEdit/HeadEdit.vue'
 
-@Component
+@Component({
+  components: {HeadEdit}
+})
 export default class HeadBar extends Vue {
   name: string = "后台系统"
+  avatarUrl: string = 'https://s3.amazonaws.com/uifaces/faces/twitter/weglov/128.jpg'
+  dialogVisible: boolean = false
+
 
   // vuex数据
   @State(state => state.app.isFold) isFold!: boolean
@@ -58,6 +65,16 @@ export default class HeadBar extends Vue {
 
   public handleFold() {
     this.UpdateIsFold(!this.isFold)
+  }
+
+  // 修改头像（获得修改后头像地址）
+  public changeAvatar(newAvatar) {
+    this.avatarUrl = newAvatar
+  }
+
+  // 关闭编辑对话框，用于同步父子组件状态
+  public closeDialog(val) {
+    this.dialogVisible = val
   }
 }
 
