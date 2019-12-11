@@ -3,7 +3,7 @@
     :data="tableData"
     class="tableClass"
     :header-cell-style="{background:'rgba(255,218,185,0.4)',color:'#2F4F4F'}"
-    empty-text="请在右侧创建数据"
+    empty-text="请在左侧创建数据"
     border>
     <el-table-column
       prop="name"

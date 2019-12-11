@@ -17,7 +17,8 @@
         <span>
           <p class="headEndCtx">
             <span v-html="admin">{{admin}}</span>
-            <img src="../../../assets/logo.png"/>     
+            <!-- <img src="../../../assets/logo.png"/>      -->
+            <el-avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/d_nny_m_cher/128.jpg"></el-avatar>
           </p>
         </span>      
         <el-dropdown-menu slot="dropdown">
