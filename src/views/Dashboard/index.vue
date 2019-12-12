@@ -1,10 +1,26 @@
 <template>
   <div class="dash">
     <div class="dashRow">
-      <div class="dashRowItem">新增账号：{{role}}</div>
-      <div class="dashRowItem">新增用户：{{user}}</div>
-      <div class="dashRowItem">新增商品：{{product}}</div>
-      <div class="dashRowItem">预留</div>
+      <el-card class="dashRowItem" shadow="always">
+        <p class="dashRowItemKey">C</p>
+        <p class="dashRowItemTitle">新增数据</p>
+        {{createData}}
+      </el-card>
+      <el-card class="dashRowItem" shadow="always">
+        <p class="dashRowItemKey">R</p>
+        <p class="dashRowItemTitle">读取数据</p>
+        {{retreiveData}}
+      </el-card>
+      <el-card class="dashRowItem" shadow="always">
+        <p class="dashRowItemKey">U</p>
+        <p class="dashRowItemTitle">修改数据</p>
+        {{updateData}}
+      </el-card>
+      <el-card class="dashRowItem" shadow="always">
+        <p class="dashRowItemKey">D</p>
+        <p class="dashRowItemTitle">删除数据</p>
+        {{deleteData}} 
+      </el-card>
     </div>
 
     <div class="dashRow">
@@ -45,9 +61,10 @@ import BarChart from './components/BarChart.vue'
   }
 })
 export default class DashBoard extends Vue {
-  role: Number = 123
-  user: Number = 123456
-  product: Number = 123456
+  createData: string = "1,000,000"
+  retreiveData: string = "2,000"
+  updateData: string = "500"
+  deleteData: string = "1,000"
   chartLine: any
 }
 </script>
@@ -62,7 +79,7 @@ export default class DashBoard extends Vue {
   justify-content: space-around;
   align-items: center;
   margin: 30px auto;
-  font-size: 2rem;
+  font-size: 1.5rem;
 
   &Row {
     width: 100%;
@@ -75,19 +92,47 @@ export default class DashBoard extends Vue {
 
     &Item {
       width: 24%;
-      height: 100px;
-      line-height: 100px;
-      overflow: auto;
+      text-align: left;
+      line-height: 40px;
+      border-radius: 10px;
       background-color:	white;
-      box-shadow: 2px 2px 2px rgba(0,0,0,.5);
+      box-shadow: 1px 1px 1px rgba(0,0,0,.3);
       border-color: rgba(0,0,0,.05);
+
+      &Title {
+        color: rgb(113, 125, 126)
+      }
+
+      &Key {
+        width: 50px;
+        height: 50px;
+        float: right;
+        border-radius: 50px;
+        text-align: center;
+        line-height: 50px;
+        border: 2px solid rgb(113, 125, 126);
+        -webkit-transform: rotate(-40deg); 
+        transform: rotate(-40deg);
+        opacity: 0.5;
+      }
+
+      &Key:hover {
+        transform:translateX(10px);
+        width: 60px;
+        height: 60px;
+        border-radius: 60px;
+        line-height: 60px;
+        color: rgb(123, 31, 162);
+        border: 2px solid rgb(142, 68, 173 );
+        opacity: 1;
+      }
     }
 
     &Middle {
       width: 100%;
       background-color:	white;
       padding: 15px;
-      box-shadow: 2px 2px 4px rgba(0,0,0,.5);
+      box-shadow: 1px 1px 1px rgba(0,0,0,.3);
       border-color: rgba(0,0,0,.05);
     }
 
@@ -95,13 +140,13 @@ export default class DashBoard extends Vue {
       width: 30%;
       padding: 10px;
       background-color: white;
-      box-shadow: 2px 2px 4px rgba(0,0,0,.5);
+      box-shadow: 1px 1px 1px rgba(0,0,0,.3);
       border-color: rgba(0,0,0,.5);
     }
 
     @media screen and (max-width:1000px) {
       &Item {
-        width: 48%;
+        width: 100%;
         margin: 10px 0;
       }
 

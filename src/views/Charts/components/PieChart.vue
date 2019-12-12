@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import myMixins from '../mixins/resize'
+import myMixins from '../mixins/calenderPieResize'
 import echarts from 'echarts'
 import 'echarts/lib/CoordinateSystem'
 
@@ -16,59 +16,51 @@ export default class LineChart extends Vue{
   @Prop() private width !: String 
   @Prop() private height !: String 
 
+  pieRadius = 30;
+  scatterData = this.getVirtulData();
+  pieInitialized = false
+
+  public getVirtulData() {
+    var date = +echarts['number'].parseDate('2017-02-01');
+    var end = +echarts['number'].parseDate('2017-03-01');
+    var dayTime = 3600 * 24 * 1000;
+    var data:Array<any> = [];
+    for (var time = date; time < end; time += dayTime) {
+      data.push([
+        echarts['format'].formatTime('yyyy-MM-dd', time),
+        Math.floor(Math.random() * 10000)
+      ]);
+    }
+    return data;
+  }
+
+  public getPieSeries(scatterData, chart) {
+    return echarts['util'].map(scatterData, (item, index) => {
+      var center = chart.convertToPixel('calendar', item);
+      return {
+        id: index + 'pie',
+        type: 'pie',
+        center: center,
+        label: {
+          normal: {
+            formatter: '{c}',
+            position: 'inside'
+          }
+        },
+        radius: this.pieRadius,
+        data: [
+          {name: '工作', value: Math.round(Math.random() * 24)},
+          {name: '娱乐', value: Math.round(Math.random() * 24)},
+          {name: '睡觉', value: Math.round(Math.random() * 24)}
+        ]
+      };
+    });
+  }
+
   public initChart() {
     this.chart = echarts.init(<HTMLDivElement | HTMLCanvasElement>document.getElementById(this.id))
     
     var cellSize = [80, 80];
-    var pieRadius = 30;
-
-    function getVirtulData() {
-      var date = +echarts['number'].parseDate('2017-02-01');
-      var end = +echarts['number'].parseDate('2017-03-01');
-      var dayTime = 3600 * 24 * 1000;
-      var data:Array<any> = [];
-      for (var time = date; time < end; time += dayTime) {
-        data.push([
-          echarts['format'].formatTime('yyyy-MM-dd', time),
-          Math.floor(Math.random() * 10000)
-        ]);
-      }
-      return data;
-    }
-
-    function getPieSeries(scatterData, chart) {
-      return echarts['util'].map(scatterData, function (item, index) {
-        var center = chart.convertToPixel('calendar', item);
-        return {
-          id: index + 'pie',
-          type: 'pie',
-          center: center,
-          label: {
-            normal: {
-              formatter: '{c}',
-              position: 'inside'
-            }
-          },
-          radius: pieRadius,
-          data: [
-            {name: '工作', value: Math.round(Math.random() * 24)},
-            {name: '娱乐', value: Math.round(Math.random() * 24)},
-            {name: '睡觉', value: Math.round(Math.random() * 24)}
-          ]
-        };
-      });
-    }
-
-    function getPieSeriesUpdate(scatterData, chart) {
-      return echarts['util'].map(scatterData, function (item, index) {
-        var center = chart.convertToPixel('calendar', item);
-        return {
-          id: index + 'pie',
-          center: center
-        };
-      });
-    }
-    var scatterData = getVirtulData();
 
     var option = {
       backgroundColor: '#344b58',
@@ -125,41 +117,29 @@ export default class LineChart extends Vue{
             }
           }
         },
-        data: scatterData
+        data: this.scatterData
       }]
     };
-
-    var pieInitialized;
     
     setTimeout(() => {
-        pieInitialized = true;
+        this.pieInitialized = true;
         this.chart.setOption(option)
         this.chart.setOption({
-            series: getPieSeries(scatterData, this.chart)
+            series: this.getPieSeries(this.scatterData, this.chart)
         });
     }, 10);
-
-    window.onresize = () => {
-      setTimeout(() => {
-        if (pieInitialized) {
-          this.chart.setOption({
-            series: getPieSeriesUpdate(scatterData, this.chart)
-          });
-        } 
-      }, 100)   
-    };
   }
 
   private mounted () {
     this.initChart()
   }
 
-  private beforeDestroy() {
-    if (!this.chart) {
-      return
-    }
-    this.chart.dispose()
-    this.chart = null
-  }
+  // private beforeDestroy() {
+  //   if (!this.chart) {
+  //     return
+  //   }
+  //   this.chart.dispose()
+  //   this.chart = null
+  // }
 }
 </script>

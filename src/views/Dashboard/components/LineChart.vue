@@ -18,18 +18,19 @@ export default class LineChart extends Vue{
     this.chart = echarts.init(document.getElementById('chartLine'));
     this.chart.setOption({
       title: {
-        text: '折线图'
+        text: '数据趋势图'
       },
       tooltip: {
-        trigger: 'axis'
+        trigger: 'axis',
       },
       legend: {
         data:['实际情况','理想']
       },
       grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
+        left: 10,
+        right: 10,
+        bottom: 20,
+        top: 50,
         containLabel: true
       },
       toolbox: {
@@ -48,13 +49,24 @@ export default class LineChart extends Vue{
           name:'实际情况',
           type:'line',
           smooth: true,
-          data:[500, 700, 650, 500, 400, 350, 500]
+          animationDuration: 2800,
+          animationEasing: 'cubicInOut',
+          data: [100, 120, 161, 134, 105, 160, 165]
         },
         {
           name:'理想',
           type:'line',
+          itemStyle: {
+            normal: {
+              areaStyle: {
+                color: '#f3f8ff'
+              }
+            }
+          },
           smooth: true,
-          data:[500, 300, 250, 500, 750, 700, 500]
+          animationDuration: 2800,
+          animationEasing: 'quadraticOut',
+          data:[120, 82, 91, 154, 162, 140, 145]
         }
       ]
     })
