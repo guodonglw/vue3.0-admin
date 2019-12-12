@@ -41,6 +41,10 @@
       </div>
     </div>
 
+    <div class="dashRow">
+      <swiper-img></swiper-img>
+    </div>
+
     <div class="dashBlock"></div>
   </div>
 </template>
@@ -51,13 +55,15 @@ import LineChart from './components/LineChart.vue'
 import RadarChart from './components/RadarChart.vue'
 import PieChart from './components/PieChart.vue'
 import BarChart from './components/BarChart.vue'
+import SwiperImg from './components/SwiperImg.vue'
 
 @Component({
   components: { 
     LineChart,
     RadarChart,
     PieChart,
-    BarChart
+    BarChart,
+    SwiperImg
   }
 })
 export default class DashBoard extends Vue {

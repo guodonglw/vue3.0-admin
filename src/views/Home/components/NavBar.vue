@@ -20,7 +20,10 @@
           <span slot="title">{{item.name}}</span>
         </template>
         <template v-for="child in item.children">
-          <el-menu-item :index="child.path" :key="child.path" v-if="!child.hidden" :class="{subMenu: true}">{{child.name}}</el-menu-item>
+          <el-menu-item :index="child.path" :key="child.path" v-if="!child.hidden" :class="{subMenu: true}">
+            <i :class="child.iconCls"></i>
+            <span slot="title">{{child.name}}</span>
+          </el-menu-item>
         </template>
       </el-submenu>
       <!-- 一级菜单渲染 -->
@@ -71,8 +74,9 @@ export default class NavBar extends Vue {
 }
 
 .subMenu {
+  background-color: rgba(	0,128,128, 0.3) !important;
   &:hover {
-     background-color: rgba(46,139,87, 0.5) !important;
+     background-color: rgba(0,128,128, 0.7) !important;
   }
 }
 

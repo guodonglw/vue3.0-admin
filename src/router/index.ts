@@ -57,11 +57,13 @@ const routes = [
     children: [
       {
         name: '图表Tab',
+        iconCls: 'el-icon-help',
         path: '/chart',
         component: () => import('../views/Charts/index.vue')
       },
       {
         name: '图标Icon',
+        iconCls: 'el-icon-bicycle',
         path: '/icon',
         component: () => import('../views/Icon/index.vue')
       }
