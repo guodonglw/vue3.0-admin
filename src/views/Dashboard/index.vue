@@ -107,12 +107,13 @@ export default class DashBoard extends Vue {
         width: 50px;
         height: 50px;
         float: right;
+        color: rgba(100, 181, 246, 1);
         border-radius: 50px;
         text-align: center;
         line-height: 50px;
         border: 2px solid rgb(113, 125, 126);
-        -webkit-transform: rotate(-40deg); 
-        transform: rotate(-40deg);
+        -webkit-transform: rotate(-30deg); 
+        transform: rotate(-30deg);
         opacity: 0.5;
       }
 

@@ -1,9 +1,9 @@
 <template>
   <div class="chart">
     <el-tabs v-model="activeName" type="card" @tab-click="handleClick" class="chartTab">
-      <el-tab-pane label="折线图" name="line" class="chartTabItem">折线图</el-tab-pane>
-      <el-tab-pane label="柱状图" name="bar" class="chartTabItem">柱状图</el-tab-pane>
-      <el-tab-pane label="饼图" name="pie" class="chartTabItem">饼图</el-tab-pane>
+      <el-tab-pane label="折线图" name="line" class="chartTabItem"></el-tab-pane>
+      <el-tab-pane label="柱状图" name="bar" class="chartTabItem"></el-tab-pane>
+      <el-tab-pane label="饼图" name="pie" class="chartTabItem"></el-tab-pane>
     </el-tabs>
 
     <div class="chartContent">

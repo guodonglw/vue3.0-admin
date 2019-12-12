@@ -1,33 +1,32 @@
 <template>
   <div class="icon">
-    <div v-for="(item,index) in elementIcons" :key="index">
-      <el-tooltip placement="top">
-        <div slot="content">
-          {{generateElementIcon(item)}}
-        </div>
-        <div class="iconItem">
-          <i :class="'el-icon-' + item"></i>
-          <span>{{item}}</span>
-        </div>
-      </el-tooltip>
+    <el-tabs v-model="activeName" type="card" @tab-click="handleClick" class="iconTab">
+      <el-tab-pane label="ElementIcom" name="element" class="iconTabItem"></el-tab-pane>
+      <el-tab-pane label="FontAwesome" name="fontawesome" class="iconTabItem"></el-tab-pane>
+    </el-tabs>
+
+    <div class="iconContent">
+      <element-icon v-if="activeName=='element'"></element-icon>
+      <font-awesome v-if="activeName=='fontawesome'"></font-awesome>
     </div>
+
+    <div class="block"></div>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import Icons from './icons'
+import ElementIcon from './components/ElementIcon.vue'
+import FontAwesome from './components/FontAwesome.vue'
 
-interface IconData {
-  elementIcons: Array<string>
-}
-
-@Component
+@Component({
+  components: { ElementIcon, FontAwesome }
+})
 export default class Icon extends Vue{
-  elementIcons = Icons['elementIcons']
+  activeName = 'element'
 
-  public generateElementIcon(symbol) {
-    return `<i class="el-icon-${symbol}" />`
+  public handleClick() {
+
   }
 }
 </script>
@@ -35,36 +34,31 @@ export default class Icon extends Vue{
 <style lang="less" scoped>
 .icon {
   width: 100%;
-  // height: 85%;
+  min-height: 85%;
   margin: 20px 0;
   border: 1px solid rgba(173,216,230, 1);
   background-color: #fff;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
   justify-content: space-around;
-  align-items: center;
 
-  &Item {
-    margin: 20px;
-    height: 85px;
-    text-align: center;
-    width: 100px;
-    float: left;
-    font-size: 30px;
-    color: #24292e;
-    cursor: pointer;
-    // border: 1px solid red;
-    background-image: linear-gradient(to right,rgba(0,206,209, 0.2) , rgba(0,255,255, 0.2));
+   &Tab {
+    flex: 0 0 5%;
 
-    i {
-      margin-top: 10px;
-    }
-
-    span {
-      display: block;
-      font-size: 16px;
-      margin: 10px auto;
+    &Item {
+      height: 0;
     }
   }
+
+  &Content {
+    width: 100%; 
+    flex: 1 1 90%;
+    margin: 5px 0 0 0;
+    // border: 2px solid blue;
+  }
+}
+
+.block {
+  flex: 0 0 50px;
 }
 </style>

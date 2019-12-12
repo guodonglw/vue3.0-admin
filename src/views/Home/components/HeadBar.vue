@@ -18,6 +18,7 @@
           <p class="headEndCtx">
             <span v-html="admin">{{admin}}</span>
             <el-avatar :src="avatarUrl"></el-avatar>
+            <i class="el-icon-caret-bottom el-icon--right" style="font-size:15px; height: 1px"></i>
           </p>
         </span>      
         <el-dropdown-menu slot="dropdown">

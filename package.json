@@ -49,6 +49,7 @@
     "chai": "^4.2.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "font-awesome": "^4.7.0",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
     "typescript": "~3.5.3",
