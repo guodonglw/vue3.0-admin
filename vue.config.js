@@ -6,7 +6,7 @@ module.exports = {
   // 输出文件目录
   outputDir: 'dist',
   // eslint-loader 是否在保存的时候检查
-  lintOnSave: true,
+  lintOnSave: false,
   // webpack配置
   // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
   chainWebpack: () => {},
@@ -24,6 +24,10 @@ module.exports = {
   // 生产环境是否生成 sourceMap 文件
   productionSourceMap: true,
   devServer: {
+    overlay:{
+      warning:false,
+      errors:false
+    },
     open: process.platform === 'darwin',
     host: '0.0.0.0',
     port: 8080,
