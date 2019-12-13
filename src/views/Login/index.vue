@@ -94,7 +94,7 @@ export default {
   },
 
   mounted() {
-    if (this._isMobile) {
+    if (this._isMobile()) {
       this.UpdateIsFold(true)
     }
   }
