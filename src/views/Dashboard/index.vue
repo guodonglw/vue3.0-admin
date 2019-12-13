@@ -42,7 +42,9 @@
     </div>
 
     <div class="dashRow">
-      <swiper-img></swiper-img>
+      <swiper-img class="dashRowSwiper"></swiper-img>
+      <todo-list class="dashRowTodo"></todo-list>
+      <cool-clock class="dashRowClock"></cool-clock>
     </div>
 
     <div class="dashBlock"></div>
@@ -56,6 +58,8 @@ import RadarChart from './components/RadarChart.vue'
 import PieChart from './components/PieChart.vue'
 import BarChart from './components/BarChart.vue'
 import SwiperImg from './components/SwiperImg.vue'
+import TodoList from './components/TodoList.vue'
+import CoolClock from './components/CoolClock.vue'
 
 @Component({
   components: { 
@@ -63,7 +67,9 @@ import SwiperImg from './components/SwiperImg.vue'
     RadarChart,
     PieChart,
     BarChart,
-    SwiperImg
+    SwiperImg,
+    TodoList,
+    CoolClock
   }
 })
 export default class DashBoard extends Vue {
@@ -118,21 +124,43 @@ export default class DashBoard extends Vue {
         text-align: center;
         line-height: 50px;
         border: 2px solid rgb(113, 125, 126);
-        -webkit-transform: rotate(-30deg); 
+        // -webkit-transform: rotate(-30deg); 
         transform: rotate(-30deg);
+        transition: width 1s, height 1s;
+        -moz-transition: width 1s, height 1s, -moz-transform 1s; /* Firefox 4 */
+        -webkit-transition: width 1s, height 1s, -webkit-transform 1s; /* Safari and Chrome */
+        -o-transition: width 1s, height 1s, -o-transform 1s; /* Opera */
         opacity: 0.5;
       }
 
       &Key:hover {
-        transform:translateX(10px);
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
+        transform:rotate(1080deg);
+        -moz-transform:rotate(1080deg); /* Firefox 4 */
+        -webkit-transform:rotate(1080deg); /* Safari and Chrome */
+        -o-transform:rotate(1080deg); /* Opera */
         border-radius: 60px;
-        line-height: 60px;
+        line-height: 50px;
         color: rgb(123, 31, 162);
         border: 2px solid rgb(142, 68, 173 );
         opacity: 1;
       }
+    }
+
+    &Swiper {
+      width: 35%;
+      margin: 20px 0;
+    }
+
+    &Todo {
+      width: 30%;
+      margin: 20px 0;
+    }
+
+    &Clock {
+      width: 30%;
+      margin: 20px 0;
     }
 
     &Middle {
@@ -160,6 +188,18 @@ export default class DashBoard extends Vue {
       &Graph {
         width: 100%;
         margin: 5px;
+      }
+
+      &Swiper {
+        width: 100%;
+      }
+
+      &Todo {
+        width: 100%;
+      }
+
+      &Clock {
+        width: 100%;
       }
     }
   }

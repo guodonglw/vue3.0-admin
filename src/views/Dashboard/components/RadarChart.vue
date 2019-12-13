@@ -15,9 +15,9 @@ export default class LineChart extends Vue{
   __resizeHandler: any
 
   public drawChart(): void {
-    this.chart = Echarts.init(<HTMLDivElement | HTMLCanvasElement>document.getElementById('radarChart'))
+    this.chart = Echarts.init(<any>document.getElementById('radarChart'))
     this.chart.setOption({
-      tooltip:{ },
+      tooltip:{},
       legend: {
         data: ['预算分配', '实际开销'],
       },
