@@ -45,15 +45,9 @@ export default class HeadBar extends Vue {
   avatarUrl: string = 'https://s3.amazonaws.com/uifaces/faces/twitter/weglov/128.jpg'
   dialogVisible: boolean = false
 
-
   // vuex数据
   @State(state => state.app.isFold) isFold!: boolean
   @Action('UpdateIsFold') UpdateIsFold!: Function
-
-  @Watch('isFold')
-  onIsFoldChanged() {
-    this.$emit('getHeadData', this.isFold)
-  }
 
   // 计算属性
   get admin() {

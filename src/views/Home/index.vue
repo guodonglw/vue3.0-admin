@@ -2,7 +2,7 @@
   <div class="ctn">
     <!-- 头部 -->
     <div class="ctnHead">
-      <head-bar @getHeadData="getHeadData"></head-bar> 
+      <head-bar></head-bar> 
     </div>
 
     <!-- 内容主体 -->
@@ -27,6 +27,8 @@
 <script>
 import HeadBar from './components/HeadBar'
 import NavBar from './components/NavBar'
+import { mapGetters } from 'vuex'
+
 export default {
   components: {
     HeadBar,
@@ -40,18 +42,19 @@ export default {
     }
   },
 
+  computed: {
+    isFold() {
+      return this.$store.state.app.isFold
+    } 
+  },
+
   data() {
     return {
-      isFold: false,
       isRouterAlive: true
     }
   },
 
   methods: {
-    getHeadData(val) {
-      this.isFold = val
-    },
-
     // 页面重载函数
     reload () {
       this.isRouterAlive = false

@@ -4,7 +4,7 @@
       <el-form-item label="头像" :label-width="labelWidth">
         <el-upload
           class="avatar-uploader formItem"
-          action="https://jsonplaceholder.typicode.com/posts/"
+          action="https://www.baidu.com"
           :show-file-list="false"
           :on-success="handleAvatarSuccess"
           :on-error="handleAvatarError"
