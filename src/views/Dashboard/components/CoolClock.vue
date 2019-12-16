@@ -120,7 +120,8 @@ export default class CoolClock extends Vue{
     }, 30)
   }
 
-  private beforeDestoryed() {
+  private beforeDestroy() {
+    console.log('tttt')
     clearInterval(this.timer)
     this.timer = null
   }
