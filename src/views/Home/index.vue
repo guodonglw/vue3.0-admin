@@ -11,10 +11,23 @@
       <nav-bar></nav-bar>
       <!-- 内容 -->
       <div class="ctnBodyContent">
-        <div :class="['ctnBodyTitle', {'ctnBodyTitleFold': isFold}]">
-          <el-breadcrumb separator="/">
-            <el-breadcrumb-item ><strong>{{$route.name}}</strong></el-breadcrumb-item>
-          </el-breadcrumb>
+        <div :class="['ctnBodyContentTitle', {'ctnBodyContentTitleFold': isFold}]">    
+          <el-breadcrumb separator="/" style="float: left; margin-right: 30px; line-height: 20px">
+            <el-breadcrumb-item><strong>{{$route.name}}</strong></el-breadcrumb-item>
+          </el-breadcrumb>   
+          <el-tag
+            id="routerTag"
+            :key="tag.path"
+            v-for="tag in dynamicTags"
+            closable
+            :disable-transitions="false"
+            type='warning'
+            size="small"
+            @click="handleClick(tag)"
+            @close="handleClose(tag)">
+            {{tag.name}}
+          </el-tag>
+          
         </div>
         <div class="childContent">
           <router-view v-if="isRouterAlive"></router-view>
@@ -45,7 +58,13 @@ export default {
   computed: {
     isFold() {
       return this.$store.state.app.isFold
-    } 
+    },
+    dynamicTags() {
+      let routerPaths = this.$store.state["app"]
+      routerPaths = routerPaths["routerPaths"]
+      routerPaths = routerPaths.split("_").map(item => JSON.parse(item))
+      return routerPaths
+    }
   },
 
   data() {
@@ -63,6 +82,16 @@ export default {
           this.isRouterAlive = true
         }, 300)   
       })
+    },
+
+    // 点击tab跳转到对应页面
+    handleClick(tag) {
+      this.$router.push({path: tag.path})
+    },
+
+    // 关闭tab标签
+    handleClose(tag) {
+      this.$store.dispatch('RemoveRouter', tag)
     }
   }
 }
@@ -98,25 +127,32 @@ export default {
       justify-content: center;
       align-items: center;
       position: relative;
-    }
 
-    &Title {
-      width: 100%;
-      position: fixed;
-      top: 55px;
-      left: 205px;
-      z-index: 1;
+      &Title {
+        width: 100%;
+        position: fixed;
+        top: 55px;
+        left: 205px;
+        z-index: 1;
+        // border: 1px solid red;
 
-      &Fold {
-        left: 80px;
+        &Fold {
+          left: 80px;
+        }
       }
     }
   }
 }
 
 .childContent {
+  margin-top: 25px;
   width: 97%;
   height: 100%;
+}
+
+#routerTag {
+  float: left;
+  border: 1px solid rgba(30,144,255,0.3)
 }
 
 .el-dialog {

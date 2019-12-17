@@ -2,16 +2,20 @@ const app = {
   state: {
     rememberPass: true,  // 是否记住密码
     isFold: false,  // 侧边导航栏是否折叠
-    percentage: 30  // VuexRelated部分进度条百分比
+    percentage: 30,  // VuexRelated部分进度条百分比
+    routerPaths: ""  // 记录路由历史相关
   },
 
   mutations: {
+    // 记住密码相关功能
     UPDATE_REMEMBERPASS: (state: Object, isRemember: boolean): void => {
       state['rememberPass'] = isRemember
     },
+    // 侧边导航栏折叠相关功能
     UPDATE_ISFOLD: (state: Object, isFold: boolean) : void => {
       state['isFold'] = isFold
     },
+    // vuex部分演示百分比相关功能
     INCREASE_PRECENTAGE: (state: Object, percentage: number): void => {
       state['percentage'] += percentage
       state['percentage'] = state['percentage'] > 100 ? 100 : state['percentage']
@@ -27,6 +31,25 @@ const app = {
         percentage = 100
       }
       state['percentage'] = percentage
+    },
+    // 和路由历史相关
+    ADD_ROUTER: (state: Object, path: object): void => {
+      let routerPaths = state["routerPaths"]
+      if (routerPaths) {
+        let reg = new RegExp(JSON.stringify(path))
+        state["routerPaths"] = reg.test(routerPaths) ? routerPaths : routerPaths + '_' + JSON.stringify(path)
+      } else {
+        state["routerPaths"] = JSON.stringify(path)
+      }   
+    },
+    REMOVE_ROUTER: (state: Object, path: object):void => {
+      let originPaths = state["routerPaths"]
+      let delPath = JSON.stringify(path)
+      let reg = new RegExp(delPath + '_')
+      if (!reg.test(originPaths)) {
+        reg = new RegExp('_' + delPath)
+      }
+      state["routerPaths"] = originPaths.replace(reg, "")
     }
   },
 
@@ -49,6 +72,14 @@ const app = {
 
     SetPercentage: (ctx: any, percentage: number) => {
       ctx.commit('SET_PERCENTAGE', percentage)
+    },
+
+    AddRouter: (ctx: any, path: object) => {
+      ctx.commit('ADD_ROUTER', path)
+    },
+
+    RemoveRouter: (ctx: any, path: object) => {
+      ctx.commit('REMOVE_ROUTER', path)
     }
   }
 }

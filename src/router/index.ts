@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter, { RawLocation }  from 'vue-router'
 import Login from '../views/Login/index.vue'
 import Home from '../views/Home/index.vue'
+import store from '@/store'
 
 /**
  * 重写路由的push方法
@@ -113,6 +114,13 @@ router.beforeEach((to, from, next) => {
   if (!admin && to.path !== '/login') {
     next({ path: '/login' })
   } else {
+    if (to.path !== '/login') {
+      let newPath = {
+        name: to.name,
+        path: to.fullPath
+      }
+      store.dispatch("AddRouter", newPath)  // 向全局变量中添加路由
+    }
     next()
   }
 });
