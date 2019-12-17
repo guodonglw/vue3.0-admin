@@ -188,7 +188,7 @@ export default class GalleryChart extends Vue{
     var series: Array<any> = [];
     [
         ['北京市', chinaDatas]
-    ].forEach(function(item, i) {
+    ].forEach(function(item: Array<any>, i) {
         series.push({
           type: 'lines',
           zlevel: 2,
