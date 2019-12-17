@@ -11,8 +11,8 @@
       <nav-bar></nav-bar>
       <!-- 内容 -->
       <div class="ctnBodyContent">
-        <div :class="['ctnBodyContentTitle', {'ctnBodyContentTitleFold': isFold}]">    
-          <el-breadcrumb separator="/" style="float: left; margin-right: 30px; line-height: 20px">
+        <div :class="['ctnBodyContentTitle', {'ctnBodyContentTitleFold': isFold}, 'easeInOut']">    
+          <el-breadcrumb separator="/" class="breadCrumb">
             <el-breadcrumb-item><strong>{{$route.name}}</strong></el-breadcrumb-item>
           </el-breadcrumb>   
           <el-tag
@@ -26,8 +26,7 @@
             @click="handleClick(tag)"
             @close="handleClose(tag)">
             {{tag.name}}
-          </el-tag>
-          
+          </el-tag>        
         </div>
         <div class="childContent">
           <router-view v-if="isRouterAlive"></router-view>
@@ -144,10 +143,22 @@ export default {
   }
 }
 
+.easeInOut {
+  -webkit-transition: all 1s ease-in-out ;
+  -moz-transition: all 1s ease-in-out ;
+  -o-transition: all 1s ease-in-out ;
+  transition: all 1s ease-in-out ;
+}
+
 .childContent {
   margin-top: 25px;
   width: 97%;
   height: 100%;
+}
+
+.breadCrumb {
+  float: left; 
+  margin-right: 30px; 
 }
 
 #routerTag {
