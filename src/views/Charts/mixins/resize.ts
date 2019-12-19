@@ -13,6 +13,7 @@ declare module 'vue/types/vue' {
 export default class myMixins extends Vue {
   __resizeHandler : any
 
+  // 侧边栏折叠事件发生时触发resize
   @State(state => state.app.isFold) isFold!: boolean
   @Watch('isFold')
   onIsFoldChnage(val) {

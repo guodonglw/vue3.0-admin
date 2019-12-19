@@ -21,6 +21,7 @@
             v-for="tag in dynamicTags"
             closable
             :disable-transitions="false"
+            style="cursor:pointer"
             type='warning'
             size="small"
             @click="handleClick(tag)"
