@@ -9,7 +9,11 @@ module.exports = {
   lintOnSave: false,
   // webpack配置
   // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
-  chainWebpack: () => {},
+  chainWebpack: (config) => {
+    config
+    .plugin('webpack-bundle-analyzer')
+    .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
+  },
   configureWebpack: (config) => {
     if (process.env.NODE_ENV === 'production') {//GZIP压缩
       return {

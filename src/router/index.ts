@@ -97,7 +97,27 @@ const routes = [
         component: () => import('../views/VuexRelated/index.vue')
       }
     ]
-  } 
+  },
+  {
+    path: '/',
+    component: Home,
+    name: '',
+    iconCls: 'el-icon-star-on',
+    leaf: true,
+    hidden: true,  // 路由是否在侧边导航栏中显示
+    children: [
+      {
+        name: '404页面',
+        path: '/404',
+        component: () => import('../views/ErrorPage/404.vue')
+      }
+    ]
+  },
+  {
+    path: '*',
+    redirect: '/404',  // 重定向到404页面
+    hidden: true
+  }
 ]
 
 const router = new VueRouter({

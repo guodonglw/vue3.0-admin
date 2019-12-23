@@ -126,7 +126,7 @@ export default {
       flex-flow: column nowrap;
       justify-content: center;
       align-items: center;
-      position: relative;
+      // position: relative;
 
       &Title {
         width: 100%;

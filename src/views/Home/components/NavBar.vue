@@ -27,7 +27,7 @@
         </template>
       </el-submenu>
       <!-- 一级菜单渲染 -->
-      <el-menu-item v-if="item.leaf && item.children.length>0" :index="item.children[0].path" :key="item.children[0].path">
+      <el-menu-item v-if="!item.hidden && item.leaf && item.children.length>0" :index="item.children[0].path" :key="item.children[0].path">
         <i :class="item.iconCls"></i>
         <span slot="title">{{item.children[0].name}}</span>
       </el-menu-item>
