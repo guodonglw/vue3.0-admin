@@ -24,6 +24,7 @@ const routes = [
   {
     path: '/',
     component: Home,
+    redirect: '/dashboard',
     name: '',
     iconCls: 'el-icon-s-help',
     leaf: true,
