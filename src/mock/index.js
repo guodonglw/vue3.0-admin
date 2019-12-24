@@ -22,7 +22,7 @@ export default {
     mock.onGet('/login').reply(config => {
       let { name, pass } = config.params
       return new Promise((resolve, reject) => {
-        if (name === 'admin' && pass === 'admin') {
+        if ((name === 'admin' && pass === 'admin') || (name === 'editor' && pass === 'editor')) {
           resolve ([200, {code: 0, msg: '成功', result: {}}])
         } else {
           resolve ([200, {code: 1, msg: '账号/密码错误', result: {}}])

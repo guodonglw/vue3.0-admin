@@ -1,4 +1,5 @@
 const app = {
+  namespaced: true,
   state: {
     rememberPass: true,  // 是否记住密码
     isFold: false,  // 侧边导航栏是否折叠

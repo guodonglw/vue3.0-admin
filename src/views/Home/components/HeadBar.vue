@@ -47,11 +47,11 @@ export default class HeadBar extends Vue {
 
   // vuex数据
   @State(state => state.app.isFold) isFold!: boolean
-  @Action('UpdateIsFold') UpdateIsFold!: Function
+  @Action('app/UpdateIsFold') UpdateIsFold!: Function
 
   // 计算属性
   get admin() {
-    return sessionStorage.getItem('admin') ? sessionStorage.getItem('admin') + '&nbsp&nbsp' : 'admin'
+    return sessionStorage.getItem('name') ? sessionStorage.getItem('name') + '&nbsp&nbsp' : 'admin'
   }
 
   public logOut () {

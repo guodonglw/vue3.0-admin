@@ -26,8 +26,8 @@ export default class LineProgress extends Vue{
   ]
 
   @State(state => state.app.percentage) percentage !: number
-  @Action('IncreasePercentage') IncreasePercentage !: Function
-  @Action('DecreasePercentage') DecreasePercentage !: Function
+  @Action('app/IncreasePercentage') IncreasePercentage !: Function
+  @Action('app/DecreasePercentage') DecreasePercentage !: Function
 }
 </script>
 

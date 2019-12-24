@@ -3,6 +3,7 @@ import VueRouter, { RawLocation }  from 'vue-router'
 import Login from '../views/Login/index.vue'
 import Home from '../views/Home/index.vue'
 import store from '@/store'
+import { generateRoutes } from './permission'
 
 /**
  * 重写路由的push方法
@@ -35,7 +36,25 @@ const routes = [
         component: () => import('../views/Dashboard/index.vue')
       }
     ]
-  },
+  }, 
+  {
+    path: '/',
+    component: Home,
+    name: '',
+    iconCls: 'el-icon-star-on',
+    leaf: true,
+    hidden: true,  // 路由是否在侧边导航栏中显示
+    children: [
+      {
+        name: '404页面',
+        path: '/404',
+        component: () => import('../views/ErrorPage/404.vue')
+      }
+    ]
+  }
+]
+
+const asyncRoutes = [
   {
     path: '/',
     component: Home,
@@ -46,7 +65,10 @@ const routes = [
       {
         name: '表格',
         path: '/admin',
-        component: () => import('../views/AdminTable/index.vue')
+        component: () => import('../views/AdminTable/index.vue'),
+        meta: {
+          roles: ['admin', 'editor']
+        }
       }
     ]
   },
@@ -61,13 +83,19 @@ const routes = [
         name: '图表Tab',
         iconCls: 'el-icon-help',
         path: '/chart',
-        component: () => import('../views/Charts/index.vue')
+        component: () => import('../views/Charts/index.vue'),
+        meta: {
+          roles: ['admin']
+        }
       },
       {
         name: '图标Icon',
         iconCls: 'el-icon-bicycle',
         path: '/icon',
-        component: () => import('../views/Icon/index.vue')
+        component: () => import('../views/Icon/index.vue'),
+        meta: {
+          roles: ['admin', 'editor']
+        }
       }
     ]
   }, 
@@ -81,7 +109,10 @@ const routes = [
       {
         name: 'Form表单',
         path: '/form',
-        component: () => import('../views/Form/index.vue')
+        component: () => import('../views/Form/index.vue'),
+        meta: {
+          roles: ['admin']
+        }
       }
     ]
   },
@@ -95,22 +126,10 @@ const routes = [
       {
         name: 'Vuex使用',
         path: '/vuex',
-        component: () => import('../views/VuexRelated/index.vue')
-      }
-    ]
-  },
-  {
-    path: '/',
-    component: Home,
-    name: '',
-    iconCls: 'el-icon-star-on',
-    leaf: true,
-    hidden: true,  // 路由是否在侧边导航栏中显示
-    children: [
-      {
-        name: '404页面',
-        path: '/404',
-        component: () => import('../views/ErrorPage/404.vue')
+        component: () => import('../views/VuexRelated/index.vue'),
+        meta: {
+          roles: ['admin']
+        }
       }
     ]
   },
@@ -127,22 +146,36 @@ const router = new VueRouter({
   routes
 })
 
+var flag = true  // 页面刷新标志
 router.beforeEach((to, from, next) => {
   if (to.path == '/login') {
-    sessionStorage.removeItem('admin');
+    sessionStorage.removeItem('name');
+    sessionStorage.removeItem('pass');
+    flag = true
   }
-  let admin = <String>sessionStorage.getItem('admin');
+  let admin = <String>sessionStorage.getItem('name');
   if (!admin && to.path !== '/login') {
     next({ path: '/login' })
   } else {
-    if (to.path !== '/login') {
-      let newPath = {
-        name: to.name,
-        path: to.fullPath
+    // 该处进行动态路由生成（当页面刷新时或首次进入该系统时，生成路由）
+    if (flag && to.path !== '/login') {
+      flag = false
+      router['options'].routes = routes
+      let generateAsyncRoutes = generateRoutes(asyncRoutes, <string>sessionStorage.getItem('name'))  // 根据登录角色生成动态路由
+      router.addRoutes(generateAsyncRoutes)
+      router['options'].routes = router['options'].routes.concat(generateAsyncRoutes)
+      next({ ...to, replace: true })  // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
+    } else {
+      // 以下部分为向全局变量中添加路由历史，形成tag标签
+      if (to.path !== '/login') {
+        let newPath = {
+          name: to.name,
+          path: to.fullPath
+        }
+        store.dispatch("app/AddRouter", newPath)  // 向全局变量中添加路由
       }
-      store.dispatch("AddRouter", newPath)  // 向全局变量中添加路由
+      next()
     }
-    next()
   }
 });
 

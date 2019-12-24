@@ -29,8 +29,8 @@ export default class UpdateVuex extends Vue{
   
   @State(state => state.app.percentage) percentage !: number
   @State(state => state.app.isFold) isFold !: boolean
-  @Action('UpdateIsFold') UpdateIsFold !: Function
-  @Action('SetPercentage') SetPercentage !: Function
+  @Action('app/UpdateIsFold') UpdateIsFold !: Function
+  @Action('app/SetPercentage') SetPercentage !: Function
 
   @Watch('isFoldNow')
   onIsFoldNowChanged(val) {

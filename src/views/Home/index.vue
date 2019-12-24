@@ -91,7 +91,7 @@ export default {
 
     // 关闭tab标签
     handleClose(tag) {
-      this.$store.dispatch('RemoveRouter', tag)
+      this.$store.dispatch('app/RemoveRouter', tag)
     }
   }
 }

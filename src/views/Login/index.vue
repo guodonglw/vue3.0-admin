@@ -9,7 +9,7 @@
         <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
       </el-form-item>
       <div class="loginRem">
-        <el-checkbox label="记住密码 (账号:admin/密码:admin)" v-model="remember"></el-checkbox>
+        <el-checkbox label="记住密码 (账号:admin/密码:admin)(账号:editor/密码:editor)" v-model="remember"></el-checkbox>
       </div>
       <el-form-item>
         <el-button class="loginButton" type="primary" @click="submitForm('ruleForm')" :loading="logining">登录</el-button>
@@ -21,6 +21,7 @@
 <script>
 import service from '@/service/index'
 import { mapGetters, mapActions } from 'vuex'
+import { asyncRoutes } from '@/router/index'
 
 export default {
   data() {
@@ -43,11 +44,6 @@ export default {
   },
 
   methods: {
-    ...mapActions([
-      'UpdateRememberPass',
-      'UpdateIsFold'
-    ]),
-
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -56,10 +52,11 @@ export default {
           service.login(params).then(res => {
             let { code, msg = '', result = {} } = res['data'];
             if (code === 0) {
-              sessionStorage.setItem('admin', this.ruleForm.name)
+              sessionStorage.setItem('name', this.ruleForm.name)
               sessionStorage.setItem('pass', this.ruleForm.pass)
               this.$router.push('/dashboard')
-              this.UpdateRememberPass(this.remember)  // 全局变量是否记住密码
+              // this.UpdateRememberPass(this.remember)  // 全局变量是否记住密码
+              this.$store.dispatch('app/UpdateRememberPass', this.remember)
             } else {
               this.$message({
                 message: msg,
@@ -74,6 +71,7 @@ export default {
               type: 'error',
               duration: 1000
             })
+            console.log(err)
           });
         } else {
           this.$message({
@@ -95,7 +93,7 @@ export default {
 
   mounted() {
     if (this._isMobile()) {
-      this.UpdateIsFold(true)
+      this.$store.dispatch('app/UpdateIsFold', true)
     }
   }
 }
@@ -118,7 +116,7 @@ export default {
     margin: 180px auto;
     width: 350px;
     padding: 50px;
-    background-image: linear-gradient(to right, rgba(	245,245,220,0.8), rgba(135,206,250,0.8));
+    background-image: linear-gradient(to right, rgba(	245,245,220,0.9), rgba(255,255,224,0.7));
     border: 1px solid #eaeaea;
     box-shadow: 0 0 25px #AFEEEE; 
   }
@@ -135,6 +133,8 @@ export default {
     flex-flow: row nowrap;
     align-items: flex-start;
     margin-bottom: 20px;
+    // border: 1px solid red
   }
 }
+
 </style>
