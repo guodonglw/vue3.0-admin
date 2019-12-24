@@ -3,10 +3,10 @@
     <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="0px" class="loginForm">
       <h1 class="loginTitle">后台系统</h1>
       <el-form-item prop="name">
-        <el-input type="text" v-model="ruleForm.name" autocomplete="off"></el-input>
+        <el-input type="text" v-model="ruleForm.name" placeholder="请输入账号" autocomplete="off"></el-input>
       </el-form-item>
       <el-form-item prop="pass">
-        <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
+        <el-input type="password" v-model="ruleForm.pass" placeholder="请输入密码" autocomplete="off"></el-input>
       </el-form-item>
       <div class="loginRem">
         <el-checkbox label="记住密码 (账号/密码:admin/admin或editor/editor)" v-model="remember"></el-checkbox>
@@ -103,6 +103,8 @@ export default {
 
 <style scoped lang="less">
 .login {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-weight: bold;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
