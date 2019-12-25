@@ -10,9 +10,10 @@ module.exports = {
   // webpack配置
   // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
   chainWebpack: (config) => {
-    config
-    .plugin('webpack-bundle-analyzer')
-    .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
+    // 关于打包后包资源各部分占比的配置相关
+    // config
+    // .plugin('webpack-bundle-analyzer')
+    // .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
   },
   configureWebpack: (config) => {
     if (process.env.NODE_ENV === 'production') {//GZIP压缩
@@ -26,7 +27,7 @@ module.exports = {
     }
   },
   // 生产环境是否生成 sourceMap 文件
-  productionSourceMap: true,
+  productionSourceMap: false,
   devServer: {
     overlay:{
       warning:false,
