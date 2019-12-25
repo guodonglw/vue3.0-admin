@@ -51,6 +51,9 @@ const app = {
         reg = new RegExp('_' + delPath)
       }
       state["routerPaths"] = originPaths.replace(reg, "")
+    },
+    RESET_ROUTER: (state: Object): void => {
+      state["routerPaths"] = ''
     }
   },
 
@@ -81,6 +84,10 @@ const app = {
 
     RemoveRouter: (ctx: any, path: object) => {
       ctx.commit('REMOVE_ROUTER', path)
+    },
+
+    ResetRouter: (ctx: any) => {
+      ctx.commit('RESET_ROUTER')
     }
   }
 }

@@ -119,10 +119,10 @@ export default {
     background-clip: padding-box;
     margin: 180px auto;
     width: 350px;
-    padding: 50px;
+    padding: 35px 50px 20px 50px;
     background-image: linear-gradient(to right, rgba(	245,245,220,0.9), rgba(255,255,224,0.85));
     border: 1px solid #eaeaea;
-    box-shadow: 0 0 25px #AFEEEE; 
+    // box-shadow: 0 0 5px #AFEEEE; 
   }
   &Title {
     margin: 0 0 20px 0;

@@ -151,6 +151,7 @@ router.beforeEach((to, from, next) => {
   if (to.path == '/login') {
     sessionStorage.removeItem('name');
     sessionStorage.removeItem('pass');
+    store.dispatch('app/ResetRouter');  // 全局路由tag重置
     flag = true
   }
   let admin = <String>sessionStorage.getItem('name');
