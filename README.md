@@ -1,6 +1,4 @@
-<h1 align="center" style="background-image:-webkit-linear-gradient(right,#2bc0e4,#eaecc6); 
-            -webkit-background-clip:text; 
-            -webkit-text-fill-color:transparent;">vue3-admin</h1>
+<h1 align="center">vue3-admin</h1>
 
 <p align="center">
   <a href="https://github.com/vuejs/vue">
@@ -23,9 +21,6 @@ vue3-admin是一个后台管理系统的前端页面展示，是由vue-cli4和el
 
 ## 演示(由于作者自己买的低配版阿里云服务器，所以可能导致请求时间略长)
 [在线demo](http://39.105.222.188/vue3.0-admin/#/login)
-
-## 对浏览器的支持
-对主流浏览器chrome,firefox,Safari等浏览器有着较好的支持，对ie浏览器未兼容
 
 ## 开发
 ```bash
@@ -55,3 +50,11 @@ npm run build
 ```
 
 打包会出现dist文件夹，用Chrome浏览器打开index.html页面即可
+
+## Browsers support
+
+Modern browsers
+
+| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](https://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](https://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](https://godban.github.io/browsers-support-badges/)</br>Safari |
+| --------- | --------- | --------- |
+| last 2 versions| last 2 versions| last 2 versions
