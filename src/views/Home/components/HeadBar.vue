@@ -54,6 +54,7 @@ export default class HeadBar extends Vue {
     return sessionStorage.getItem('name') ? sessionStorage.getItem('name') + '&nbsp&nbsp' : 'admin'
   }
 
+  // 与vue2中的methods部分中的function相似（该处这样实现）
   public logOut () {
     this.$router.push({name: 'login'})
   }

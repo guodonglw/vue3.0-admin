@@ -1,4 +1,5 @@
 export default {
+  // 防抖相关函数
   debounce: function(func: Function, wait: number, immediate?: Boolean) {
     let timeout, args, context, timestamp, result
 
@@ -33,6 +34,7 @@ export default {
     }
   },
 
+  // 格式化时间戳
   formatDate: function(date) {  
     var y = date.getFullYear();  
     var m = date.getMonth() + 1;  

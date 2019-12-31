@@ -13,7 +13,7 @@ export const generateRoutes = function(asyncRoutes:Array<any>, role:string): Arr
     const mid = {...item}
     if (hasPermission(mid, role)) {
       if (mid.children) {
-        mid.children = generateRoutes(mid.children, role)
+        mid.children = generateRoutes(mid.children, role)  // 对子路由进行递归，防止遗漏（同时该部分支持多级子路由的递归生成）
       }
       res.push(mid)
     }

@@ -15,6 +15,7 @@ VueRouter.prototype.push = function push(location: RawLocation) {
 
 Vue.use(VueRouter)
 
+// 公共路由，全部角色均具有该部分路由权限
 const routes = [
   {
     path: '/login',
@@ -54,6 +55,7 @@ const routes = [
   }
 ]
 
+// 需根据权限进行动态生成的路由
 const asyncRoutes = [
   {
     path: '/',
@@ -67,7 +69,7 @@ const asyncRoutes = [
         path: '/admin',
         component: () => import('../views/AdminTable/index.vue'),
         meta: {
-          roles: ['admin', 'editor']
+          roles: ['admin', 'editor']  // 该部分和权限相关
         }
       }
     ]

@@ -101,7 +101,7 @@ export default class AdminContent extends Vue{
 
   public handleEdit(index, row) {
     this.editVisible = true
-    this.row = row
+    this.row = Object.assign({}, row)  // 该处要对对象进行浅拷贝
   }
 
   public handleDel(index, row) {

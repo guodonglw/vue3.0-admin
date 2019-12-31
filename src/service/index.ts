@@ -1,4 +1,4 @@
-// 正式环境调用service
+// 正式环境调用service（实际开发请查看该部分代码）
 import service from '../util/request'
 // mock数据直接调用axios
 import axios from 'axios'

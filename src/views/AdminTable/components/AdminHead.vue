@@ -7,7 +7,8 @@
       <el-form-item>
         <el-button type="primary" @click="getAdmin" size="small" icon="el-icon-search">查询</el-button>
         <el-button type="primary" @click="visible=true" size="small" icon="el-icon-plus">新增</el-button>
-        <el-button :loading="downloadLoading" type="info" @click="handleDownload" size="small" icon="el-icon-document">导出Excel</el-button>
+        <el-button :loading="downloadLoading" type="info" @click="handleDownloadExcel" size="small" icon="el-icon-document">导出Excel</el-button>
+        <el-button :loading="downloadLoading1" type="info" @click="handleDownloadZip" size="small" icon="el-icon-takeaway-box">导出Zip</el-button>
       </el-form-item>
     </el-form>
 
@@ -28,7 +29,7 @@ interface Admin {
 
 @Component({
   components: { AddAdmin },
-  mixins: [downloadMixins]
+  mixins: [downloadMixins]  // 混入下载为excel和zip的方法（handleDownloadExcel/handleDownloadZip）
 })
 export default class AdminHead extends Vue implements Admin{
   @Prop() private page !: number

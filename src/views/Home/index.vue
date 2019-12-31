@@ -29,6 +29,7 @@
             {{tag.name}}
           </el-tag>        
         </div>
+        <!-- 该部分为主要数据展示 -->
         <div class="childContent">
           <router-view v-if="isRouterAlive"></router-view>
         </div>
@@ -48,7 +49,7 @@ export default {
     NavBar
   },
 
-  // 点击页面侧边栏实现重载页面
+  // 点击页面侧边栏实现重载页面（尽量减少这种写法，不利于后面项目维护）
   provide() {
     return {
       reload: this.reload
@@ -62,7 +63,7 @@ export default {
     dynamicTags() {
       let routerPaths = this.$store.state["app"]
       routerPaths = routerPaths["routerPaths"]
-      routerPaths = routerPaths.split("_").map(item => JSON.parse(item))
+      routerPaths = routerPaths.split("_").map(item => JSON.parse(item))  // vuex中存储的routerPaths为序列化后结果，该处需反序列化
       return routerPaths
     }
   },
