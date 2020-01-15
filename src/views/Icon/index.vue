@@ -1,10 +1,12 @@
 <template>
   <div class="icon">
+    <!-- tab标签 -->
     <el-tabs v-model="activeName" type="card" @tab-click="handleClick" class="iconTab">
       <el-tab-pane label="ElementIcom" name="element" class="iconTabItem"></el-tab-pane>
       <el-tab-pane label="FontAwesome" name="fontawesome" class="iconTabItem"></el-tab-pane>
     </el-tabs>
 
+    <!-- 用于存放icon的空间 -->
     <div class="iconContent">
       <element-icon v-if="activeName=='element'"></element-icon>
       <font-awesome v-if="activeName=='fontawesome'"></font-awesome>

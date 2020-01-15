@@ -86,6 +86,7 @@ export default {
       });
     },
 
+    // 判断是否是移动端打开
     _isMobile() {
       let flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
       return flag;
@@ -95,7 +96,7 @@ export default {
 
   mounted() {
     if (this._isMobile()) {
-      this.$store.dispatch('app/UpdateIsFold', true)
+      this.$store.dispatch('app/UpdateIsFold', true)  // 移动端打开则折叠侧边栏
     }
   }
 }

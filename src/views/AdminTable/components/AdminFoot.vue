@@ -18,6 +18,7 @@ export default class AdminFoot extends Vue{
   @Prop() private total!: number
   pageSize:number = 15
 
+  // 点击触发页码变化
   public handleCurrentChange(val) {
     let page = val
     this.$emit('getFootData', page, this.pageSize)

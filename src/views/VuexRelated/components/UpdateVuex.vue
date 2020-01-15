@@ -27,6 +27,7 @@ export default class UpdateVuex extends Vue{
   percentageNow:number = 0
   isFoldNow: Boolean = false
   
+  // 获取vuex的state及action
   @State(state => state.app.percentage) percentage !: number
   @State(state => state.app.isFold) isFold !: boolean
   @Action('app/UpdateIsFold') UpdateIsFold !: Function
@@ -51,6 +52,7 @@ export default class UpdateVuex extends Vue{
     this.percentageNow = val
   }
 
+  // 定时增加percentage
   public activeProgress() {
     let interval = setInterval(() => {
       if (this.percentageNow > 99) {

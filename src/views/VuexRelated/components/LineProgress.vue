@@ -17,6 +17,7 @@ import { State, Getter, Action } from 'vuex-class'
 @Component
 export default class LineProgress extends Vue{
   @Prop() width !: string
+  // 根据percentage的数值进行颜色变化
   customColorMethod = [
     {color: '#f56c6c', percentage: 20},
     {color: '#e6a23c', percentage: 40},

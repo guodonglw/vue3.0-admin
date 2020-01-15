@@ -34,7 +34,7 @@ interface Admin {
 export default class AdminHead extends Vue implements Admin{
   @Prop() private page !: number
 
-  downloadData: Array<any> = []
+  downloadData: Array<any> = []  // 该数据用于mixin中的方法调用（该处可不定义）
 
   form = {
     id: '',

@@ -47,6 +47,7 @@
       <cool-clock class="dashRowClock"></cool-clock>
     </div>
 
+    <!-- 空白占位，方便后续内容拓展，同时防止页面下方被hidden -->
     <div class="dashBlock"></div>
   </div>
 </template>

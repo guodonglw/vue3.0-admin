@@ -34,11 +34,11 @@ export default class AddAdmin extends Vue implements Edit{
   @Prop() private editVisible!: Boolean
   @Prop() private row !: Object
 
-  form = this.row
   formLabelWidth = '120px'
   dialogFormVisible = this.editVisible
   loading = false
 
+  // 该处代码使用了侦听器，修改为计算属性更加合理
   @Watch('editVisible')
   onVisibleChange(val: Boolean, oldVal: Boolean) {
     this.dialogFormVisible = val
@@ -51,11 +51,12 @@ export default class AddAdmin extends Vue implements Edit{
     }
   }
 
-  @Watch('row')
-  onRowChange(val) {
-    this.form = val
+  // 计算属性，拿到要修改的数据
+  get form() {
+    return this.row
   }
 
+  // 编辑数据并修改
   public editAdmin() {
     let params = this.form
     this.loading = true
@@ -69,7 +70,7 @@ export default class AddAdmin extends Vue implements Edit{
           type: 'success'
         })
       }
-      this.$emit('flushList')
+      this.$emit('flushList')  // 修改后刷新数据
     }) 
   }
 }

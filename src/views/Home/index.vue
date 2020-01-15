@@ -60,6 +60,7 @@ export default {
     isFold() {
       return this.$store.state.app.isFold
     },
+    // 动态生成tag标签
     dynamicTags() {
       let routerPaths = this.$store.state["app"]
       routerPaths = routerPaths["routerPaths"]

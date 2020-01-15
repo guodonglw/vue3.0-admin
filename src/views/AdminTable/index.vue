@@ -29,6 +29,7 @@ export default {
   },
 
   methods: {
+    // 接收从Head传来的数据（所有交互的数据都会传回父级，在由父级下发）
     getHeadData(data, listLoading = false) {
       let result = data.result
       this.tableData = result.admins
@@ -40,12 +41,14 @@ export default {
       }
     },
 
+    // 调用Head的方法，刷新content数据
     contentFlush() {
       this.$nextTick(() => {
         this.$refs.child.getAdmin()
       })
     },
 
+    // 接收从Foot传来的数据
     getFootData(page, pageSize) {
       this.page = page
       this.$nextTick(() => {

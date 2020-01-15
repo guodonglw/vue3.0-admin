@@ -1,4 +1,5 @@
 <template>
+  <!-- 该处为一个form表单示例 -->
   <el-form :inline="false" :model="ruleForm" :rules="rules" ref="ruleFormDemo" label-width="auto" class="demo-ruleForm">
       <el-form-item label="活动名称" prop="name" >
         <el-input v-model="ruleForm.name"></el-input>

@@ -51,4 +51,5 @@ Modern browsers
 // 页面查看顺序(登录页（views/Login）-> 首页(views/Home/Dashboard))，其中views/Home为其他页面的公共引用部分
 // 与后端交互接口（请查看service/index.ts，数据由mock.js产生；实际开发请查看util/request.ts）
 // 后台系统包括了登录，异步生成路由，echarts数据可视化，table表增删改查等功能，希望该demo示例可以帮助到有需要的朋友快速上手
+// 根据vue-cli示例，主页面index.vue中会采用vue2的写法，在子组件中则有较大的变化，请仔细查看区别
 ```

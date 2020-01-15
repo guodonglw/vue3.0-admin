@@ -67,6 +67,7 @@
       </el-table-column>
     </el-table>
 
+    <!-- 编辑子组件，点击编辑按钮可见 -->
     <edit-admin :editVisible="editVisible" :row="row" @getChildData='getChildData' @flushList='flushList'></edit-admin>
   </div>
 </template>
@@ -86,6 +87,7 @@ export default class AdminContent extends Vue{
   editVisible = false
   row = {}
 
+  // 页面点击排序按钮
   public sortChange(column) {
     let { prop, order } = column
     if (order === 'descending') {
@@ -116,6 +118,7 @@ export default class AdminContent extends Vue{
     })
   }
 
+  // 当修改完成需要刷新数据（会返回最顶层）
   public flushList() {
     this.$emit('contentFlush')
   }

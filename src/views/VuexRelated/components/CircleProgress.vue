@@ -11,6 +11,7 @@ import { State, Getter, Action } from 'vuex-class'
 @Component
 export default class CircleProgress extends Vue{
   @Prop() width !: string
+  // 计算属性
   get status() {
     return this.percentage == 100 ? 'success' : 'exception'
   }
