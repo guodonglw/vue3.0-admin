@@ -9,6 +9,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@tinymce/tinymce-vue": "^3.0.1",
     "@types/echarts": "^4.4.1",
     "axios": "^0.19.0",
     "axios-mock-adapter": "^1.17.0",
@@ -22,6 +23,7 @@
     "qs": "^6.9.1",
     "register-service-worker": "^1.6.2",
     "script-loader": "^0.7.2",
+    "tinymce": "^5.1.5",
     "util": "^0.12.1",
     "vue": "^2.6.10",
     "vue-axios": "^2.1.5",

@@ -136,6 +136,23 @@ const asyncRoutes = [
     ]
   },
   {
+    path: '/',
+    component: Home,
+    name: '',
+    iconCls: 'el-icon-edit-outline',
+    leaf: true,
+    children: [
+      {
+        name: '富文本',
+        path: '/tiny',
+        component: () => import('../views/Tinymce/index.vue'),
+        meta: {
+          roles: ['admin', 'editor']
+        }
+      }
+    ]
+  },
+  {
     path: '*',
     redirect: '/404',  // 重定向到404页面
     hidden: true
