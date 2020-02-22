@@ -17,7 +17,7 @@
         <span>
           <p class="headEndCtx">
             <span v-html="admin">{{admin}}</span>
-            <el-avatar :src="avatarUrl"></el-avatar>
+            <el-avatar :src="avatarUrl" :alt="'头像'"></el-avatar>
             <i class="el-icon-caret-bottom el-icon--right" style="font-size:15px; height: 1px"></i>
           </p>
         </span>      
@@ -42,7 +42,7 @@ import HeadEdit from './HeadEdit/HeadEdit.vue'
 })
 export default class HeadBar extends Vue {
   name: string = "后台系统"
-  avatarUrl: string = 'https://s3.amazonaws.com/uifaces/faces/twitter/weglov/128.jpg'
+  avatarUrl: string = require('@/assets/avatar/avatar.jpg')
   dialogVisible: boolean = false
 
   // vuex数据

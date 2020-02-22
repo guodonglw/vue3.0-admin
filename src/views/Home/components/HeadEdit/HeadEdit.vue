@@ -9,7 +9,7 @@
           :on-success="handleAvatarSuccess"
           :on-error="handleAvatarError"
           :before-upload="beforeAvatarUpload">
-          <img v-if="avatarUrl" :src="avatarUrl" class="avatar">
+          <img v-if="avatarUrl" :src="avatarUrl" class="avatar" alt="头像">
           <i v-else class="el-icon-plus avatar-uploader-icon"></i>
         </el-upload>
       </el-form-item>
@@ -45,13 +45,13 @@ export default class HeadEdit extends Vue{
   }
 
   public handleAvatarSuccess(res, file) {
-    let newAvatar = 'https://s3.amazonaws.com/uifaces/faces/twitter/primozcigler/128.jpg'  // 该处仅用于模拟功能，实际开发需换成真实url
+    let newAvatar = 'https://img.51miz.com/Element/00/58/55/76/3193608e_E585576_5585f100.png!/quality/90/unsharp/true/compress/true/format/png/fh/630'  // 该处仅用于模拟功能，实际开发需换成真实url
     this.$emit('changeAvatar', newAvatar)
     this.$message.info('该处仅用于模拟该功能实现!')
   }
 
   public handleAvatarError(res) {
-    let newAvatar = 'https://s3.amazonaws.com/uifaces/faces/twitter/primozcigler/128.jpg'  // 该处仅用于模拟功能，实际开发需换成真实url
+    let newAvatar = 'https://img.51miz.com/Element/00/58/55/76/3193608e_E585576_5585f100.png!/quality/90/unsharp/true/compress/true/format/png/fh/630'  // 该处仅用于模拟功能，实际开发需换成真实url
     this.$emit('changeAvatar', newAvatar)
     this.$message.info('该处仅用于模拟该功能实现!')
   }
