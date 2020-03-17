@@ -126,21 +126,21 @@ export default class DashBoard extends Vue {
         line-height: 50px;
         border: 2px solid rgb(113, 125, 126);
         // -webkit-transform: rotate(-30deg); 
-        transform: rotate(-30deg);
-        transition: width 1s, height 1s;
-        -moz-transition: width 1s, height 1s, -moz-transform 1s; /* Firefox 4 */
-        -webkit-transition: width 1s, height 1s, -webkit-transform 1s; /* Safari and Chrome */
-        -o-transition: width 1s, height 1s, -o-transform 1s; /* Opera */
+        transform: rotate(-60deg);
+        transition: width 0.2s, height 0.2s;
+        -moz-transition: width 0.2s, height 0.2s, -moz-transform 0.2s; /* Firefox 4 */
+        -webkit-transition: width 0.2s, height 0.2s, -webkit-transform 0.2s; /* Safari and Chrome */
+        -o-transition: width 0.2s, height 0.2s, -o-transform 0.2s; /* Opera */
         opacity: 0.5;
       }
 
       &Key:hover {
         width: 50px;
         height: 50px;
-        transform:rotate(1080deg);
-        -moz-transform:rotate(1080deg); /* Firefox 4 */
-        -webkit-transform:rotate(1080deg); /* Safari and Chrome */
-        -o-transform:rotate(1080deg); /* Opera */
+        transform:rotate(0deg);
+        -moz-transform:rotate(0deg); /* Firefox 4 */
+        -webkit-transform:rotate(0deg); /* Safari and Chrome */
+        -o-transform:rotate(0deg); /* Opera */
         border-radius: 60px;
         line-height: 50px;
         color: rgb(123, 31, 162);
