@@ -35,25 +35,21 @@ export default class AddAdmin extends Vue implements Edit{
   @Prop() private row !: Object
 
   formLabelWidth = '120px'
-  dialogFormVisible = this.editVisible
   loading = false
-
-  // 该处代码使用了侦听器，修改为计算属性更加合理
-  @Watch('editVisible')
-  onVisibleChange(val: Boolean, oldVal: Boolean) {
-    this.dialogFormVisible = val
-  }
-
-  @Watch('dialogFormVisible')
-  onDialogFormVisibleChange(val: Boolean, oldVal: Boolean) {
-    if (!val) {
-      this.$emit('getChildData', val)
-    }
-  }
 
   // 计算属性，拿到要修改的数据
   get form() {
     return this.row
+  }
+
+  // 计算属性，获得父组件传值
+  get dialogFormVisible() {
+    return this.editVisible
+  }
+
+  // set进行父组件状态的修改
+  set dialogFormVisible(val) {
+    !val && this.$emit('update:editVisible', false)
   }
 
   // 编辑数据并修改

@@ -68,7 +68,7 @@
     </el-table>
 
     <!-- 编辑子组件，点击编辑按钮可见 -->
-    <edit-admin :editVisible="editVisible" :row="row" @getChildData='getChildData' @flushList='flushList'></edit-admin>
+    <edit-admin :editVisible.sync="editVisible" :row="row" @flushList='flushList'></edit-admin>
   </div>
 </template>
 
@@ -95,10 +95,6 @@ export default class AdminContent extends Vue{
     } else {
       this.tableData.sort((a, b) => a["id"] - b["id"])
     }
-  }
-
-  public getChildData(val) {
-    this.editVisible = val
   }
 
   public handleEdit(index, row) {

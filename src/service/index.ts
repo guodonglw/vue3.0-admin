@@ -4,7 +4,6 @@ import service from '../util/request'
 import axios from 'axios'
 
 const qs = require('qs')
-// const baseUrl = 'https://5dd3847e6625890014a6e6ae.mockapi.io/api/vue3/'
 const baseUrl = '/'
 
 export default  {

@@ -61,7 +61,7 @@ export default {
     mock.onPost('/admin').reply(config => {
       let newVal = JSON.parse(config.data);
       let newAdmin = newVal['params']
-      newAdmin['addr'] = newAdmin['addr'].join(' ')
+      newAdmin['addr'] = newAdmin['addr'] || '未知'
       newAdmin['id'] = _Admins[_Admins.length - 1].id + 1
       _Admins.push(newAdmin)
       return new Promise((resolve, reject) => {

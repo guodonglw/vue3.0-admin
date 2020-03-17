@@ -12,7 +12,7 @@
       </el-form-item>
     </el-form>
 
-    <add-admin :visible='visible' @getChildData='getChildData' @getAdmin='getAdmin'></add-admin>
+    <add-admin :visible.sync='visible' @getAdmin='getAdmin'></add-admin>
   </div>
 </template>
 
@@ -49,11 +49,6 @@ export default class AdminHead extends Vue implements Admin{
       this.downloadData = res.result['admins']
       this.$emit('getHeadData', res, false)
     })
-  }
-
-  // 接收子组件数据
-  public getChildData(val) {
-    this.visible = val
   }
 
   private created() {

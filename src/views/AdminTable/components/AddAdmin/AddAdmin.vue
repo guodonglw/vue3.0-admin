@@ -60,7 +60,6 @@ export default class AddAdmin extends Vue implements Add{
     buildtime: ''
   }
   formLabelWidth = '120px'
-  dialogFormVisible = this.visible
 
   options = [{
     value: '北京',
@@ -86,19 +85,18 @@ export default class AddAdmin extends Vue implements Add{
     label: '其他地区',
   }]
 
-  @Watch('visible')
-  onVisibleChange(val: Boolean, oldVal: Boolean) {
-    this.dialogFormVisible = val
-    for (let key in this.form) {
-      this.form[key] = ''
+  // 通过计算属性获取父级组件传值，并进行form表单清空
+  get dialogFormVisible() {
+    if (this.visible) {
+      for (let key in this.form) {
+        this.form[key] = ''
+      }
     }
+    return this.visible
   }
 
-  @Watch('dialogFormVisible')
-  onDialogFormVisibleChange(val: Boolean, oldVal: Boolean) {
-    if (!val) {
-      this.$emit('getChildData', val)
-    }
+  set dialogFormVisible(val) {
+    !val && this.$emit('update:visible', false)  // 更新父组件状态，注意.sync修饰符
   }
 
   public addAdmin() {
