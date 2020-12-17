@@ -11,6 +11,9 @@ vue3-admin是一个后台管理系统的前端页面展示，是由vue-cli4和el
 
 ![avatar](./qrCode.png)
 
+## 更快更好的开发体验，请查看下面的项目
+[vue3实战项目](https://github.com/guodonglw/vue3-admin)
+
 ## 开发
 ```bash
 # 克隆项目
