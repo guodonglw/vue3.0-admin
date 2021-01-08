@@ -43,6 +43,11 @@ npm run build
 
 打包会出现dist文件夹，用Chrome浏览器打开index.html页面即可
 
+```bash
+# 如遇到node-sass的问题，可尝试
+npm rebuild node-sass
+```
+
 ## Browsers support
 
 Modern browsers
