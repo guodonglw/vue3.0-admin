@@ -34,7 +34,7 @@
     "vuex": "^3.0.1",
     "vuex-class": "^0.3.2",
     "webpack-bundle-analyzer": "^3.6.0",
-    "xlsx": "^0.15.3"
+    "xlsx": "^0.17.0"
   },
   "devDependencies": {
     "@types/chai": "^4.1.0",
