@@ -18,7 +18,7 @@
     "echarts": "^3.5.2",
     "element-ui": "^2.12.0",
     "file-saver": "^2.0.2",
-    "jszip": "^3.2.2",
+    "jszip": "^3.7.0",
     "mockjs": "^1.1.0",
     "qs": "^6.9.1",
     "register-service-worker": "^1.6.2",
