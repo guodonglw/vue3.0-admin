@@ -20,7 +20,7 @@
     "file-saver": "^2.0.2",
     "jszip": "^3.2.2",
     "mockjs": "^1.1.0",
-    "qs": "^6.9.1",
+    "qs": "^6.9.7",
     "register-service-worker": "^1.6.2",
     "script-loader": "^0.7.2",
     "tinymce": "^5.1.5",
